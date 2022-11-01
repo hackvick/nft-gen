@@ -3,21 +3,22 @@ import Modal from "react-bootstrap/Modal";
 import style from "./Login.module.css";
 import { useFormik } from "formik";
 // import * as Yup from "yup";
-import Logo from "../assets/Logo.png";
+import Logo from "../../assets/Logo.png";
 import ForgetPassword from "../Form/ForgetPassword/ForgetPassword";
-import SignupForm from '../Form/SignupForm/SignupForm'
+import SignupForm from '../SignupForm/SignupForm'
 import { ToastContainer, toast } from 'react-toastify';
 import VerifyForm from "../Form/ForgetPassword/VerifyForm";
+
 import { NavLink } from "react-bootstrap";
 import axios from 'axios';
-import { LOGIN_API } from "../Api/Api";
+import { LOGIN_API } from "../../Api/Api";
 import {useNavigate} from 'react-router-dom'
 // import dots from '../assets/dots.png'
 const Login = (props) => {
   const { show, onClose, open, setOpen } = props;
   const [forget, setForget] = useState(false);
   const [verify, setVerify] = useState(false);
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       email: "",

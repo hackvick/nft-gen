@@ -1,9 +1,9 @@
 import React from 'react'
 import style from './FlexibleNoCode.module.css'
 import Art from '../../../assets/Art1.png';
-
 import {MOCK_TEXTS} from '../../../mockdata/Constants';
 import {useNavigate} from "react-router-dom"
+
 const FlexibleNoCode = () => {
   // const navigate = useNavigate();
   // const [show, setShow] =React.useState(false);
