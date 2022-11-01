@@ -30,6 +30,7 @@ const Login = (props) => {
         .then((res) => {
           console.log(res);
           toast.success("Login Successfully");
+          console.log("login successfully")
           // navigate("/")
           localStorage.setItem('token', res.data.data.accessToken);
           // navigate("/");
