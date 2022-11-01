@@ -65,7 +65,7 @@ const Login = (props) => {
                     (
                       <div className={style.content}>
                         <div className={style.logoContainer}>
-                          <img alt="logo" src={Logo} className={style.logo} width="30px" height="30px" /> <p className={style.logoText}>NFT Generator</p>
+                          {/* <img alt="logo" src={Logo} className={style.logo} width="30px" height="30px" /> <p className={style.logoText}>NFT Generator</p> */}
                         </div>
                         <div className={style.leftHeading}>
                           <h3>Forget Password</h3>
