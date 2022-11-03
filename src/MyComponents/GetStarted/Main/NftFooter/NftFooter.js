@@ -1,5 +1,8 @@
 import React from "react";
 import "./style.css";
+import MaskImg from "../../assets/Mask.png"
+import crossImg from "../../assets/cross.png"
+import plus1Img from "../../assets/asse/plus1.png"
 
 export const NftFooter = () => {
   return (
@@ -10,37 +13,37 @@ export const NftFooter = () => {
             <div className="layers">
               <ul className="list-unstyled text-center d-flex m-0">
                 <li>
-                  <img src="./image/Mask.png" alt="" />
+                  <img src={MaskImg} alt="" />
                   <span className="position-absolute translate-middle badge cross">
                     <a href="">
-                      <img src="./image/cross.png" alt="" />
+                      <img src={crossImg} alt="" />
                     </a>
                   </span>
                   <p>Preview</p>
                 </li>
                 <li>
-                  <img src="./image/Mask.png" alt="" />
+                  <img src={MaskImg}  alt="" />
                   <span className="position-absolute translate-middle badge cross">
                     <a href="">
-                      <img src="./image/cross.png" alt="" />
+                      <img src={crossImg} alt="" />
                     </a>
                   </span>
                   <p>Preview</p>
                 </li>
                 <li>
-                  <img src="./image/Mask.png" alt="" />
+                  <img src={MaskImg}  alt="" />
                   <span className="position-absolute translate-middle badge cross">
                     <a href="">
-                      <img src="./image/cross.png" alt="" />
+                      <img src={crossImg} alt="" />
                     </a>
                   </span>
                   <p>Preview</p>
                 </li>
                 <li>
-                  <img src="./image/Mask.png" alt="" />
+                  <img src={MaskImg}  alt="" />
                   <span className="position-absolute translate-middle badge cross">
                     <a href="">
-                      <img src="./image/cross.png" alt="" />
+                      <img src={crossImg} alt="" />
                     </a>
                   </span>
                   <p>Preview</p>
@@ -52,7 +55,7 @@ export const NftFooter = () => {
             <div className="add_layer d-flex align-items-center justify-content-end pe-5 h-100 w-100 text-center">
               <div>
                 <div className="layer_img">
-                  <img src="./image/plus1.png" alt="" />
+                  <img src={plus1Img} alt="" />
                 </div>
                 <p>Add Layer</p>
               </div>

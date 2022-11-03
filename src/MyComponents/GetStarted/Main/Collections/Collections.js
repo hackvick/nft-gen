@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.css";
-
+import MaskImg from "../../assets/Mask.png"
+import search1Img from "../../assets/asse/search1.png"
+import plus1Img from "../../assets/asse/plus1.png"
 export const Collections = () => {
   return (
     <>
@@ -8,7 +10,7 @@ export const Collections = () => {
         <div className="collection pt-5">
           <div className="search mx-3">
             <form action="#">
-              <img src="./image/search1.png" alt="" />
+              <img src={search1Img} alt="" />
               <input type="text" className="searchTerm" placeholder="Search" />
             </form>
           </div>
@@ -20,7 +22,7 @@ export const Collections = () => {
                   <div className="upload d-flex align-items-center">
                     <input type="file" id="upload" hidden />
                     <label htmlFor="upload">
-                      <img src="./image/plus1.png" alt="" />
+                      <img src={plus1Img} alt="" />
                       <br />
                       Create Your Own NFT
                     </label>
@@ -38,7 +40,7 @@ export const Collections = () => {
                     <label className="form-label btn" htmlFor="btn-check">
                       <span>
                         <img
-                          src="./image/Mask.png"
+                          src={MaskImg}
                           alt=""
                           className="img-fluid img"
                         />
@@ -56,7 +58,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check1">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -73,7 +75,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check2">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -90,7 +92,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check3">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -107,7 +109,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check4">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -124,7 +126,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check5">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -141,7 +143,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check6">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -158,7 +160,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check7">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -175,7 +177,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check8">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -192,7 +194,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check9">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />
@@ -209,7 +211,7 @@ export const Collections = () => {
                     />
                     <label className="form-label btn" htmlFor="btn-check10">
                       <img
-                        src="./image/Mask.png"
+                        src={MaskImg}
                         alt=""
                         className="img-fluid"
                       />

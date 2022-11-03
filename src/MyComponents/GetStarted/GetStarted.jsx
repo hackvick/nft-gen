@@ -5,7 +5,7 @@ import Mask from "../../assets/Mask.png";
 import Navbar from "./Navbar";
 import StartProject from "../modals/createNft/StartProject";
 // import NftGenerator from '../modals/generateNft'
-// import NftGenerate from "./layoutsNft/NftGenerate";
+import NftGenerate from "./layoutsNft/NftGenerate";
 import plus from "../../assets/asse/plus.png";
 import album from "../../assets/asse/album.png";
 import search from "../../assets/asse/search.png";
@@ -23,7 +23,7 @@ import { Spinner } from "react-bootstrap";
 import {useNftProvider } from "../context/NftProvider";
 
 const GetStarted = () => {
-  const { loader, showLoader, hideLoader } = useLoader();
+  // const { loader, showLoader, hideLoader } = useLoader();
 
   const token = localStorage.getItem("token");
   // const [show, setShow] = useState(false);
@@ -36,7 +36,7 @@ const GetStarted = () => {
 
   const [collectionData, setCollectionData] = useState();
 
-  // const { collectionId, setCollectionId, setLayerId, loader, setLoader } = useLayer();
+  const { collectionId, setCollectionId, setLayerId, loader, setLoader } = useNftProvider();
 
   // console.log(collectionData, "COLLECTION DATA USE EFFECT");
 

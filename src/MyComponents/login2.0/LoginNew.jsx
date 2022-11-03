@@ -11,8 +11,11 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { useFormik } from "formik";
 import { useOnboard } from "../../context/GlobalContext";
+import {useNavigate} from 'react-router-dom'
 
 export const LoginNew = (props) => {
+  const navigate = useNavigate()
+
   const {forget,setForget,sign,setSign} = useOnboard()
   
   console.log(forget, '>>>>>>>>>>>>>>>>>>>>>>>>')
@@ -34,10 +37,10 @@ export const LoginNew = (props) => {
           console.log(res);
           toast.success("Login Successfully");
           console.log("login successfully");
-          // navigate("/")
+          navigate("/getStarted")
           localStorage.setItem("token", res.data.data.accessToken);
           // navigate("/");
-          onClose();
+          // onClose();
         })
         .catch((err) => {
           console.log(err);

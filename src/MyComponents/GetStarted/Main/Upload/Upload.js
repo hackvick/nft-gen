@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-
+import ArtImg from "../../assets/Art1.png"
 
 export const Upload = () => {
   return (
@@ -9,24 +9,24 @@ export const Upload = () => {
         <div className="row gx-4 gy-4">
           <div className="col-4">
             <div className="box">
-              <img src="./image/img1.png" alt="" />
+              <img src={ArtImg} alt="" />
             </div>
           </div>
           <div className="col-4">
             <div className="box">
-              <img src="./image/img1.png" alt="" />
+              <img src={ArtImg} alt="" />
             </div>
           </div>
           <div className="col-4">
             <div className="box">
-              <img src="./image/img1.png" alt="" />
+              <img src={ArtImg} alt="" />
             </div>
           </div>
           <div className="col-4">
             <div className="box upload d-flex justify-content-center align-items-center">
               <input type="file" id="upload" hidden />
               <label for="upload">
-                <img src="./image/plus1.png" alt="" />
+                <img src={ArtImg} alt="" />
                 <br />
                 Upload Layer Image
               </label>

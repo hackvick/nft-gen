@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import style from "./NftGenerate.module.css";
 import UploadImage from "../../modals/UploadImage/UploadImage";
-import backgroundImage from "../../assets/0background.png";
+import backgroundImage from "../../../assets/0background.png";
 import { Slider } from "@mui/material";
-import plus from "../../assets/asse/plus.png";
-import setting from "../../assets/asse/settings.png";
+import plus from "../../../assets/asse/plus.png";
+import setting from "../../../assets/asse/settings.png";
 import { NftGenerator } from "../../modals/generateNft";
 import EditData from "../../modals/EditData";
-import AddLayer from "../Form/AddLayer/AddLayer";
-import cross from "../../assets/cross.png";
+import AddLayer from "../../modals/AddLayer/AddLayer";
+import cross from "../../../assets/cross.png";
 import axios from "axios";
 
 import { toast } from "react-toastify";
 
-import {useNftProvider } from "../../context/NftProvider";
-
+import { useNftProvider } from "../../context/NftProvider";
 
 const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
-
   //eslint-disable-next-line
   const { layerId, setLayerId, loader, setLoader } = useNftProvider();
 
@@ -25,10 +23,10 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
     // Fetching other layer images when LayerId changes
     if (layerId) {
       getImages();
-    }else{
-        setGetImageData([])
+    } else {
+      setGetImageData([]);
     }
-  //eslint-disable-next-line
+    //eslint-disable-next-line
   }, [layerId]);
 
   const token = localStorage.getItem("token");
@@ -49,10 +47,9 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
   const getImages = () => {
     setLoader(true);
     axios
-      .get(
-        `https://nft-gener.herokuapp.com/api/user/getImages/${layerId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
+      .get(`https://nft-gener.herokuapp.com/api/user/getImages/${layerId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         setGetImageData(res.data.data.Images);
         console.log(res.data.data.Images, "Image get data");
@@ -80,15 +77,18 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
         handleClose();
         setUpload(false);
         getImages();
-        toast.success('Image Uploaded Successfully')
+        toast.success("Image Uploaded Successfully");
       })
       .catch((err) => {
         console.log(err?.response);
-        toast.error(err?.response?.data?.message ?? "Something went wrong! Please select collection and then layer", );     
+        toast.error(
+          err?.response?.data?.message ??
+            "Something went wrong! Please select collection and then layer"
+        );
         setLoader(false);
       })
       .finally(() => {
-        // setLoader(false)
+        setLoader(false);
       });
   };
 

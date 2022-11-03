@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button';
 import style from './generateNft.module.css';
-import { useNftProvider } from '../../context/';
+import { useNftProvider } from '../../context/NftProvider';
+
 import axios from "axios";
 import { toast } from 'react-toastify';
 

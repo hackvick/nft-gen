@@ -8,6 +8,7 @@ export const NftProvider = ({ children }) => {
   const [layerId, setLayerId] = useState("");
   const [collectionId, setCollectionId] = useState("");
   const [collectionData, setCollectionData] = useState()
+  const [loader, setLoader] = useState(false) 
 
   useEffect(() => {
     getCollections();
