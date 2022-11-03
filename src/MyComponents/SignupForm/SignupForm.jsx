@@ -1,12 +1,19 @@
-import React from 'react'
+import { useState } from "react";
 import { useFormik } from "formik";
 import style from "./SignupForm.module.css";
+
 import * as Yup from "yup";
 import axios from 'axios';
 import { SIGN_UP_API } from '../../Api/Api'
 import { toastContainer, toast, ToastContainer } from 'react-toastify'
+import Login from '../Login/login';
+import { LoginNew } from "../login2.0/LoginNew";
+import { useOnboard } from "../../context/GlobalContext";
 
 const SignForm = () => {
+  const {forget,setForget,sign,setSign,show,setShow} = useOnboard()
+
+  const [toggle,setToggle] = useState(false)
   const initialValues = {
     userName: "",
     email: "",
@@ -22,10 +29,16 @@ const SignForm = () => {
   });
   const onSubmit = (values) => {
     console.log(values);
+    
     axios.post(SIGN_UP_API, values)
       .then((res) => {
+        formik.resetForm()
         console.log(res);
-        toast.success("SignUp Succesfully");
+        setSign(false)
+    setShow(true)
+        // setToggle(true)
+        toast.success("SignUp Successfully");
+
       })
       .catch((error) => {
         console.log(error);
@@ -41,8 +54,10 @@ const SignForm = () => {
     validationSchema,
   });
   return (
+
     <>
-      <form onSubmit={formik.handleSubmit}>
+    
+      <form onSubmit={formik.handleSubmit}  style={{padding:"20px"}} >
         <label className={style.signupLabel}>UserName</label>
         <div>
           <input
@@ -106,7 +121,7 @@ const SignForm = () => {
         </button>
       </form>
     </>
-  )
+  ) 
 }
 
 export default SignForm

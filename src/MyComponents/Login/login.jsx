@@ -15,9 +15,11 @@ import { LOGIN_API } from "../../Api/Api";
 import {useNavigate} from 'react-router-dom'
 // import dots from '../assets/dots.png'
 const Login = (props) => {
+  // const [showLogin,setShowLogin] = useState(false)
+  // const [showSignUp,setShowSignup]= useState(false)
   const { show, onClose, open, setOpen } = props;
   const [forget, setForget] = useState(false);
-  const [verify, setVerify] = useState(false);
+    const [verify, setVerify] = useState(false);
   // const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
@@ -30,6 +32,7 @@ const Login = (props) => {
         .then((res) => {
           console.log(res);
           toast.success("Login Successfully");
+          
           console.log("login successfully")
           // navigate("/")
           localStorage.setItem('token', res.data.data.accessToken);
@@ -199,7 +202,8 @@ const Login = (props) => {
                     </div>
                   </div>
                 </div>
-              )}
+              )
+              }
               <div id="rightContent" className={`col-md-6 ${style.rightContent}`}>
                 <div className={style.rightHeaderContent}>
                   <h3 className={style.rightContentHeading}>Glad to see you</h3>
@@ -219,7 +223,7 @@ const Login = (props) => {
                   )}
                 </div>
 
-
+                    
               </div>
             </div>
           </Modal.Body>

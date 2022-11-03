@@ -2,19 +2,31 @@ import React, { useState } from "react";
 import style from "./Header.module.css";
 import IMAGES from "../../assets/Logo.png";
 import Login from '../Login/login';
-
+import OnBoard from "../OnBoarding/OnBoard";
+import ForgetHandle from "../OnBoarding/ForgetHandle";
+import { useOnboard } from "../../context/GlobalContext";
 const Navbar = () => {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [open, setOpen] = useState(true);
+  const [showSign,setShowSign] = useState(false)
+  const [showLogin,setShowLogin] = useState(false)
+  const {show,setShow,setSign} = useOnboard()
+
 
   const handleShow = (e) => {
     e.preventDefault();
+    setShowLogin(true)
+    setShowSign(false)
     setShow(true);
     setOpen(false);
   };
+  
   const SignUp = (e) => {
     e.preventDefault();
     console.log(open);
+    setSign(true)
+    setShowSign(true)
+    setShowLogin(false)
     setShow(true);
     setOpen(true);
   };
@@ -78,6 +90,7 @@ const Navbar = () => {
                   login
                 </button>
               </div>
+
               <button
                 onClick={SignUp}
                 className={`btn  mx-4 ${style.signup}`}
@@ -89,7 +102,9 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <Login show={show} onClose={handleClose} open={open} setOpen={setOpen}/>
+      <OnBoard show={show} showSign={showSign} showLogin={showLogin} onClose={handleClose} open={open} setOpen={setOpen}/>
+      {/* <ForgetHandle open={open}/> */}
+      {/* <Login show={show} onClose={handleClose} open={open} setOpen={setOpen}/> */}
     </div>
   );
 };
