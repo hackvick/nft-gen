@@ -8,7 +8,6 @@ import ForgetPassword from "../Form/ForgetPassword/ForgetPassword";
 import SignupForm from '../SignupForm/SignupForm'
 import { ToastContainer, toast } from 'react-toastify';
 import VerifyForm from "../Form/ForgetPassword/VerifyForm";
-
 import { NavLink } from "react-bootstrap";
 import axios from 'axios';
 import { LOGIN_API } from "../../Api/Api";
@@ -18,7 +17,7 @@ const Login = (props) => {
   const { show, onClose, open, setOpen } = props;
   const [forget, setForget] = useState(false);
   const [verify, setVerify] = useState(false);
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -31,7 +30,7 @@ const Login = (props) => {
           console.log(res);
           toast.success("Login Successfully");
           console.log("login successfully")
-          // navigate("/")
+          navigate("/getStarted")
           localStorage.setItem('token', res.data.data.accessToken);
           // navigate("/");
           onClose()

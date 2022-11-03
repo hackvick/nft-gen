@@ -5,15 +5,13 @@ import * as Yup from "yup";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import UploadImage from "../../modals/UploadImage/UploadImage";
+import UploadImage from "../UploadImage/UploadImage";
 import { toast } from 'react-toastify'
-import { useLayer } from "../../context/LayerContext";
-
-export let responseApi;
+import { useNftProvider } from "../../context/NftProvider";
 
 const AddLayer = (props) => {
   // eslint-disable-next-line
-  const { layerId, setLayerId, collectionId, loader, setLoader } = useLayer();
+  const { layerId, setLayerId, collectionId, loader, setLoader } = useNftProvider();
 
   // eslint-disable-next-line
   const { getLayer, setShow, show } = props;
@@ -23,7 +21,6 @@ const AddLayer = (props) => {
   const [layer, setLayer] = useState("");
   const [upload, setUpload] = useState(false);
   // eslint-disable-next-line
-  const [resApi, setResApi] = useState();
 
   const initialValues = {
     layer: "",
@@ -45,7 +42,6 @@ const AddLayer = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setResApi(res);
         localStorage.setItem("LayerId", res.data.data.layer._id); // Not in use for R.B
         setLayerId(res.data.data.layer._id);
         setShow(false);
