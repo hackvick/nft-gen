@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "./NftGenerate.module.css";
+import style from "./generateNftCollection.module.css";
 import UploadImage from "../../modals/UploadImage/UploadImage";
 import backgroundImage from "../../../assets/0background.png";
 import { Slider } from "@mui/material";
@@ -7,7 +7,7 @@ import plus from "../../../assets/asse/plus.png";
 import setting from "../../../assets/asse/settings.png";
 import { NftGenerator } from "../../modals/generateNft";
 import EditData from "../../modals/EditData";
-import AddLayer from "../../modals/AddLayer/AddLayer";
+// import AddLayer from "../../modals/AddLayer/AddLayer";
 import cross from "../../../assets/cross.png";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 
 import { useNftProvider } from "../../context/NftProvider";
 
-const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
+export const GenerateNFT = ({ setLayerData, layerData }) => {
   //eslint-disable-next-line
   const { layerId, setLayerId, loader, setLoader } = useNftProvider();
 
@@ -33,7 +33,7 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
 
   const [show, setShow] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [layer, setLayer] = useState(false);
+  // const [layer, setLayer] = useState(false);
   const [edit, setEdit] = useState(false);
 
   //eslint-disable-next-line
@@ -47,7 +47,7 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
   const getImages = () => {
     setLoader(true);
     axios
-      .get(`https://nft-gener.herokuapp.com/api/user/getImages/${layerId}`, {
+      .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -68,7 +68,7 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
     setLoader(true);
     axios
       .post(
-        `https://nftsgenerator.herokuapp.com/api/user/uploadImages/${layerId}`,
+        `http://localhost:8000/api/user/uploadImages/${layerId}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -100,7 +100,7 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
         show={show}
       />
       <NftGenerator toggle={toggle} setToggle={setToggle} />
-      <AddLayer getLayer={getLayer} show={layer} setShow={setLayer} />
+      {/* <AddLayer getLayer={getLayer} show={layer} setShow={setLayer} /> */}
       <EditData show={edit} setShow={setEdit} />
 
       <div className="container p-0 h-100">
@@ -114,7 +114,7 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
                       <div className={style.hidenft}>
                         <span className={style.layerImages}>
                           <img
-                            src={`https://nft-gener.herokuapp.com${layerImg.imageUrl}`}
+                            src={`http://localhost:8000/${layerImg.imageUrl}`}
                             alt="plus"
                           />
                         </span>
@@ -229,7 +229,8 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
           </div>
         </div>
 
-        <div className={style.nftFooter}>
+         {/*nft preview footer start here  */}
+        {/* <div className={style.nftFooter}>
           <div className={style.image}>
             <div className={style.outterDiv}>
               <div className={style.inside}>
@@ -309,10 +310,11 @@ const NftGenerate = ({ getLayer, setLayerData, layerData }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+         {/*nft preview footer ends here  */}
+
       </div>
     </div>
   );
 };
 
-export default NftGenerate;

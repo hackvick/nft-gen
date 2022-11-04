@@ -38,6 +38,8 @@ export const NftProvider = ({ children }) => {
         collectionId: collectionId,
         setLayerId: setLayerId,
         setCollectionId: setCollectionId,
+        setLoader:setLoader,
+        loader:loader
       }}
     >
       {console.log(collectionData, "collectionData context side")}

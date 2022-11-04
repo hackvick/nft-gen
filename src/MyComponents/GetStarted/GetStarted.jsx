@@ -2,25 +2,28 @@ import React, { useState, useEffect } from "react";
 import style from "./GetStarted.module.css";
 import Mask from "../../assets/Mask.png";
 // import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import StartProject from "../modals/createNft/StartProject";
 // import NftGenerator from '../modals/generateNft'
-import NftGenerate from "./layoutsNft/NftGenerate";
-import plus from "../../assets/asse/plus.png";
-import album from "../../assets/asse/album.png";
-import search from "../../assets/asse/search.png";
-import template from "../../assets/asse/template.png";
+import {GenerateNFT} from "./GenerateNFTCollection/GenerateNFTCollection";
+// import plus from "../../assets/asse/plus.png";
+// import album from "../../assets/asse/album.png";
+// import search from "../../assets/asse/search.png";
+// import template from "../../assets/asse/template.png";
 import AddLayer from "../modals/AddLayer/AddLayer";
 // import NftGenerator from '../modals/generateNft';
 // import NftGenerate from '../layoutsNft/NftGenerate';
 // import NftGenerate from "../layoutsNft/NftGenerate";
+import { CustomNFT } from "./CustomNFT/CustomNFT";
+import { CreateOwnNft } from "./CreateOwnNFT/CreateOwnNft";
 
 import axios from "axios";
 import useLoader from "../hooks/useLoader";
 import { Spinner } from "react-bootstrap";
 
 // PROVIDER FOR PROVIDING LAYER DATA
-import {useNftProvider } from "../context/NftProvider";
+import { useNftProvider } from "../context/NftProvider";
+import { FooterNFTPreview } from "./FooterNFTPreview/FooterNFTPreview";
 
 const GetStarted = () => {
   // const { loader, showLoader, hideLoader } = useLoader();
@@ -36,13 +39,14 @@ const GetStarted = () => {
 
   const [collectionData, setCollectionData] = useState();
 
-  const { collectionId, setCollectionId, setLayerId, loader, setLoader } = useNftProvider();
+  const { collectionId, setCollectionId, setLayerId, loader, setLoader } =
+    useNftProvider();
 
   // console.log(collectionData, "COLLECTION DATA USE EFFECT");
 
   useEffect(() => {
     axios
-      .get(`https://nftsgenerator.herokuapp.com/api/user/getCollections`, {
+      .get(`http://localhost:8000/api/user/getCollections`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -55,7 +59,6 @@ const GetStarted = () => {
       });
   }, [collectionId]);
 
-
   const [layerData, setLayerData] = useState([]);
 
   const getLayer = (collectionId) => {
@@ -64,7 +67,7 @@ const GetStarted = () => {
     // setLoader(true)
     axios
       .get(
-        `https://nftsgenerator.herokuapp.com/api/user/getLayers/${collectionId}`,
+        `http://localhost:8000/api/user/getLayers/${collectionId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => {
@@ -74,36 +77,38 @@ const GetStarted = () => {
       })
       .catch((err) => {
         console.log(err);
-      }).finally(() => {
-        setLoader(false)
       })
+      .finally(() => {
+        setLoader(false);
+      });
   };
 
   const handleCollectionHandler = (collectionId) => {
     setCollectionId(collectionId);
     getLayer(collectionId);
-    setLayerId('')
+    setLayerId("");
   };
 
   return (
-    // <LayerProvider>
     <div
       className={`container-fluid m-0 ${style.getStarted} position-relative`}
     >
-      <div>
-        <AddLayer show={uploadImage} setShow={setUploadImage} />
-        <StartProject
-          show={startProject}
-          setShow={setStartProject}
-          getLayer={getLayer}
-          setLayerData={setLayerData}
-          layerData={layerData}
-        />
+      {/* <div> */}
+      <AddLayer show={uploadImage} setShow={setUploadImage} />
+      <StartProject
+        show={startProject}
+        setShow={setStartProject}
+        getLayer={getLayer}
+        setLayerData={setLayerData}
+        layerData={layerData}
+      />
 
-        <Navbar />
-        <div className={`row m-0 g-0 ${style.customCols} `}>
-          <div className={`${style.sideBar}`}>
-            <div className={style.sideButtom}>
+      <Navbar />
+      <div className={`row m-0 g-0 ${style.customCols} `}>
+        {/* custom nft side  component start here */}
+        <CustomNFT />
+        {/* <div className={`${style.sideBar}`}>
+          <div className={style.sideButtom}>
               <div className={style.ActiveButton}>
                 <img src={template} alt="template" />
                 <p>Custom NFT</p>
@@ -113,8 +118,12 @@ const GetStarted = () => {
                 <p>Image</p>
               </div>
             </div>
-          </div>
-          <div className={`${style.bottomBar}`}>
+        </div> */}
+        {/* custom nft side  component ends here */}
+
+        {/* Create Own Nft  side component start here */}
+        <CreateOwnNft setStartProject = {setStartProject} collectionData = {collectionData} handleCollectionHandler = {handleCollectionHandler} collectionId= {collectionId}/>
+        {/* <div className={`${style.bottomBar}`}>
             <div className={style.inputContainer}>
               <img src={search} alt="search" className="mx-3" />
               <input
@@ -148,7 +157,9 @@ const GetStarted = () => {
                         <a href="#">
                           <img
                             src={Mask}
-                            className={`${style.mainImg} ${content._id === collectionId ? style.active : ''}`}
+                            className={`${style.mainImg} ${
+                              content._id === collectionId ? style.active : ""
+                            }`}
                             alt="content"
                           />
                         </a>
@@ -156,31 +167,27 @@ const GetStarted = () => {
                     </li>
                   );
                 })}
-                {/* {nftImages.map((content, i) => (
-                  <li key={i}>
-                    <span className={style.imageWrapper}>
-                      <a href="/">
-                        <img
-                          src={content.images}
-                          className={style.mainImg}
-                          alt="content"
-                        />
-                      </a>
-                    </span>
-                  </li>
-                ))} */}
+                
+                
               </ul>
             </div>
-          </div>
-          <div className={style.rightBar}>
-            <NftGenerate
-              getLayer={getLayer}
-              setLayerData={setLayerData}
-              layerData={layerData}
-            />
-          </div>
+          </div> */}
+
+        {/* Create Own Nft  side component ends here */}
+
+        {/* nft generate setting side component start here */}
+        <div className={style.rightBar}>
+          <GenerateNFT
+            setLayerData={setLayerData}
+            
+          />
+          {/* nft preview footer start here */}
+          <FooterNFTPreview layerData={layerData}  getLayer={getLayer} />
+          {/* nft preview footer ends  here */}
         </div>
+        {/* nft generate setting side component ends here */}
       </div>
+      {/* </div> */}
 
       {loader && (
         <div className={style["spinner-outer"]}>
@@ -194,7 +201,6 @@ const GetStarted = () => {
         </div>
       )}
     </div>
-    // </LayerProvider>
   );
 };
 

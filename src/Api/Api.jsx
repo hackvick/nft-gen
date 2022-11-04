@@ -1,4 +1,6 @@
-const API_BASE_URL = "https://nft-gener.herokuapp.com";
+// const API_BASE_URL = "https://nft-gener.herokuapp.com";
+const API_BASE_URL = "http://localhost:8000";
+
 const getApiUrl = (endpoint) => API_BASE_URL + endpoint;
 const LOGIN_API = getApiUrl("/api/user/login");
 const SIGN_UP_API = getApiUrl("/api/user/register");

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from '../../assets/Logo.png';
+import Logo from '../../../assets/Logo.png';
 import style from './Navbar.module.css'
 import { RiArrowDropDownFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
