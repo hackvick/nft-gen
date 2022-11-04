@@ -53,7 +53,7 @@ const GetStarted = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [collectionId]);
 
 
   const [layerData, setLayerData] = useState([]);
@@ -75,14 +75,14 @@ const GetStarted = () => {
       .catch((err) => {
         console.log(err);
       }).finally(() => {
-        // setLoader(false)
+        setLoader(false)
       })
   };
 
   const handleCollectionHandler = (collectionId) => {
-    // setCollectionId(collectionId);
+    setCollectionId(collectionId);
     getLayer(collectionId);
-    // setLayerId('')
+    setLayerId('')
   };
 
   return (
@@ -148,7 +148,7 @@ const GetStarted = () => {
                         <a href="#">
                           <img
                             src={Mask}
-                            // className={`${style.mainImg} ${content._id === collectionId ? style.active : ''}`}
+                            className={`${style.mainImg} ${content._id === collectionId ? style.active : ''}`}
                             alt="content"
                           />
                         </a>
@@ -173,16 +173,16 @@ const GetStarted = () => {
             </div>
           </div>
           <div className={style.rightBar}>
-            {/* <NftGenerate
+            <NftGenerate
               getLayer={getLayer}
               setLayerData={setLayerData}
               layerData={layerData}
-            /> */}
+            />
           </div>
         </div>
       </div>
 
-      { (
+      {loader && (
         <div className={style["spinner-outer"]}>
           <Spinner
             animation="border"
