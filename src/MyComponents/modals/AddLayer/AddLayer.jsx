@@ -38,7 +38,7 @@ const AddLayer = (props) => {
 
     console.log('testing', loader)
     await axios
-      .post("https://nftsgenerator.herokuapp.com/api/user/addLayer", data, {
+      .post("http://localhost:8000/api/user/addLayer", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

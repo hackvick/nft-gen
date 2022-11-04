@@ -35,7 +35,7 @@ export const NftGenerator = ({setToggle, toggle}) =>{
     }
     const download = () => {
       axios
-      .post("https://nftsgenerator.herokuapp.com/api/user/generateNFT", data,{headers: {Authorization: `Bearer ${token}`}})
+      .post("http://localhost:8000/api/user/generateNFT", data,{headers: {Authorization: `Bearer ${token}`}})
       .then((res) => {
         setDownloadData(res)
         console.log(res)
