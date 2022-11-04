@@ -1,6 +1,6 @@
 import React from "react";
-import "./style.css";
-import ArtImg from "../../assets/Art1.png"
+import "../style.css";
+import ArtImg from "../../../../assets/Art1.png"
 
 export const Upload = () => {
   return (

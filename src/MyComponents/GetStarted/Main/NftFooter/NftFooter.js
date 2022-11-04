@@ -1,8 +1,8 @@
 import React from "react";
-import "./style.css";
-import MaskImg from "../../assets/Mask.png"
-import crossImg from "../../assets/cross.png"
-import plus1Img from "../../assets/asse/plus1.png"
+import "../style.css";
+import MaskImg from "../../../../assets/Mask.png"
+import crossImg from "../../../../assets/cross.png"
+import plus1Img from "../../../../assets/asse/plus1.png"
 
 export const NftFooter = () => {
   return (

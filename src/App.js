@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />}></Route>
             <Route path="/getStarted" element={<GetStarted />}></Route>
-            {/* <Route path="/mainPage" element={<Main />}></Route> */}
+            <Route path="/mainPage" element={<Main />}></Route>
           </Routes>
         </OnBoard>
         <ToastContainer />
