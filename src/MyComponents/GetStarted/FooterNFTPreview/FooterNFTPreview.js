@@ -26,7 +26,10 @@ export const FooterNFTPreview = (props) => {
             <div className={style2.image}>
               <div className={style2.outterDiv}>
                 <div className={style2.inside}>
-                  <div className={`col-8 ${style2.nftColBottom}`}>
+
+                  <div className={`col-8 ${style2.nftColBottom } layer_add`}>
+                    
+                    <div> 
                     <div className={style2.parent}>
                       <div className={style2.rectangle1}>
                         <div className={style2.bitmap3}>
@@ -54,6 +57,8 @@ export const FooterNFTPreview = (props) => {
                         <p>Background</p>
                       </div>
                     </div>
+              </div>
+
                     {layerData.map((layerData) => (
                       <div
                         className={`${style2.baby} ${
@@ -77,8 +82,9 @@ export const FooterNFTPreview = (props) => {
                         </div>
                       </div>
                     ))}
+
                   </div>
-                  <div className="col-4">
+                  <div className="col-4 add_layer">
                     <div className={style2.layerBaby}>
                       <div className={style2.addLayer}>
                         <div

@@ -6,7 +6,7 @@
   padding: 12px 0px 1px 0px;
   text-align: center;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 40px;
   font-weight: 500;
   color: #000000;
 }
@@ -33,6 +33,7 @@
   /* height: 85px; */
   margin-top: 27px;
   padding: 8;
+  line-height: 40px;
   text-align: center;
 }
 .customButton p {
@@ -209,6 +210,9 @@
 }
 .leftSection {
   margin-top: 10px;
+  height: calc(100vh - 106px);
+  overflow-x: hidden;
+  margin-bottom: 0;
 }
 ul .leftSection {
   list-style: none;
@@ -236,7 +240,7 @@ ul .leftSection {
 .leftSection li {
   float: left;
   text-align: center;
-  width: 44.5%;
+  width: 50%;
   /* border-radius: 8px; */
   margin-bottom: 11px !important;
   /* margin-right: 8px; */
@@ -909,4 +913,14 @@ span .imageWrapper {
 
 .active{
   border: 5px solid blue;
+}
+
+
+
+
+.add_layer {
+  width: 30.6% !important;
+}
+.layer_add {
+  width: 69.4% !important;
 }

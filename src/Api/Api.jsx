@@ -13,6 +13,7 @@ const UPLOAD_IMAGES_WITH_LAYER_ID = getApiUrl("/api/user/uploadImages/");
 const GET_IMAGES_WITH_LAYER_ID = getApiUrl("/api/user/getImages/");
 const GENERATE_NFT = getApiUrl("/api/user/generateNFT");
 
+
 export {
   SIGN_UP_API,
   LOGIN_API,

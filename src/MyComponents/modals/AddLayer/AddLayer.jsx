@@ -42,6 +42,7 @@ const AddLayer = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        console.log("hittt");
         localStorage.setItem("LayerId", res.data.data.layer._id); // Not in use for R.B
         setLayerId(res.data.data.layer._id);
         setShow(false);
