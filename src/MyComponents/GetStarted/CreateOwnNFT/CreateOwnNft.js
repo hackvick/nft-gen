@@ -38,8 +38,10 @@ export const CreateOwnNft = (props) => {
                   // className={content._id === collectionId ? style.active : ''}
                   onClick={() => handleCollectionHandler(content._id)}
                 >
+                {content._id === collectionId?
+                <>
                 {console.log(content._id,"content id createown side")}
-                {console.log(collectionId,"collectionId createOwn Side")}
+                {console.log(collectionId,"collectionId createOwn Side")} </>:""}
                   <span className={style.imageWrapper}>
                     <a href="#">
                       <img

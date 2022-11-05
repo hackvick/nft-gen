@@ -42,9 +42,9 @@ const AddLayer = (props) => {
           "layerID add layer fn or api  side "
         );
         setLayerId(res.data.data.layer._id);
-        setSelectedLayerName(res.data.data.layer.name)
+        // setSelectedLayerName(res.data.data.layer.name)
         setShow(false);
-        getLayer(collectionId);
+        getLayer(collectionId,res.data.data.layer.name);
         toast.success("Layer Added Successfully");
         formik.resetForm();
       })

@@ -27,7 +27,7 @@ export const GetStarted = () => {
   const [layerData, setLayerData] = useState([]);
   const [projectName,setProjectName] = useState("")
   const [selectedLayerName,setSelectedLayerName] = useState("") 
-  const getLayer = (collection_Id) => {
+  const getLayer = (collection_Id,layername) => {
     console.log(collection_Id, "get layer function side");
     // setLoader(true)
     axios
@@ -36,6 +36,7 @@ export const GetStarted = () => {
       })
       .then((res) => {
         setLayerData(res.data.data.layers, "Get layer data get layer fn side");
+        setSelectedLayerName(layername)
         
       })
       .catch((err) => {
