@@ -9,6 +9,7 @@ export const CreateOwnNft = (props) => {
 
   return (
     <>
+     {/* {console.log(style.active,"style active create own nft side")} */}
       <div className={`${style.bottomBar}`}>
         <div className={style.inputContainer}>
           <img src={search} alt="search" className="mx-3" />
@@ -32,7 +33,6 @@ export const CreateOwnNft = (props) => {
             </div>
             {collectionData?.map((content, index) => {
               return (
-                
                 <li
                   key={index}
                   // className={content._id === collectionId ? style.active : ''}

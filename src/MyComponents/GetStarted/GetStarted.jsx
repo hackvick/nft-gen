@@ -50,7 +50,7 @@ export const GetStarted = () => {
 
   const handleCollectionHandler = (collection_Id) => {
     console.log(collection_Id,"collectionid handle collection create own nft")
-    setCollectionId(collectionId);
+    setCollectionId(collection_Id);
     getLayer(collectionId);
     //get images bhi aygi ispr click krty hi
     setLayerId("");
