@@ -1,32 +1,20 @@
 import React, { useState } from "react";
-// import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import style from "./StartProject.module.css";
+import axios from "axios";
+import AddLayer from "../AddLayer/AddLayer";
+import { useNftProvider } from "../../context/NftProvider";
+import { toast } from "react-toastify";
+// import Button from 'react-bootstrap/Button';
 // import { useFormik } from "formik";
 // import * as Yup from "yup";
 // import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-import AddLayer from "../AddLayer/AddLayer";
 
-import { useNftProvider } from "../../context/NftProvider";
-
-import useLoader from "./../../hooks/useLoader";
-import { toast } from "react-toastify";
-
-// import UploadImage from '../../modals/UploadImage/UploadImage';
 const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
-  // const { loader, showLoader, hideLoader } = useLoader();
-  const {
-    layerId,
-    setLayerId,
-    collectionId,
-    setCollectionId,
-    loader,
-    setLoader,
-  } = useNftProvider();
+  const { setCollectionId, setLoader } = useNftProvider();
 
-  const [layer, setLayer] = useState(true);
+  const [collectionCreated, setCollectionCreated] = useState(false);
   const [name, setName] = useState("");
   const [height, setHeight] = useState("");
   const [width, setWidth] = useState("");
@@ -34,30 +22,35 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
   const handleClose = () => setShow(false);
 
   const data = { name, height, width };
+
   const handleSize = (e) => {
     setHeight(e.target.value);
     setWidth(e.target.value);
   };
-  const token = localStorage.getItem("token");
-  localStorage.setItem("Name", name);
+
   const createProject = () => {
+    const token = localStorage.getItem("token");
     setLoader(true);
     axios
-      .post(
-        "https://nftsgenerator.herokuapp.com/api/user/createCollection",
-        data,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
+      .post("http://localhost:8000/api/user/createCollection", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
-        // console.log(res, "Create Collection")
-        // console.log(res.data.data.collection._id, "IDDDDD")
-        localStorage.setItem("collectionId", res.data.data.collection._id);
+        console.log(
+          res.data.data.collection._id,
+          "collection id Create Collection side  response"
+        );
         setCollectionId(res.data.data.collection._id);
-        setLayer(false);
+        setCollectionCreated(true);
       })
       .catch((err) => {
-        console.log(err, ">>>>>>>>>>>>>>>>>>>");
-        toast.error(err?.response?.data?.message ?? "Something went wrong!");
+        console.log(err, "Create Collection fn side");
+        toast.error(
+          err.response.data
+            ? err.response.data.message
+            : "Something went wrong! check console"
+        );
+        // toast.error(err?.response?.data?.message ?? "Something went wrong!");
       })
       .finally(() => {
         setLoader(false);
@@ -66,7 +59,8 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
 
   return (
     <div>
-      {layer ? (
+      {console.log(name, height, width, "name,height width start project")}
+      {!collectionCreated ? (
         <Modal className="CreateNft" show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Start Project</Modal.Title>

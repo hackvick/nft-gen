@@ -4,9 +4,12 @@ import style from './Navbar.module.css'
 import { RiArrowDropDownFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const {ProjectName} = props
+
     return (
         <div style={{ marginTop: "14px" }} className={style.navbar}>
+         {console.log(ProjectName,"project name navbar side ")}
             <div className={`row ${style.row}`}>
                 <div className="col-3">
                     <ul className={style.leftSide}>
@@ -16,10 +19,15 @@ const Navbar = () => {
                         <Link to='/'>
                             <li style={{ marginLeft: "81px" }} className={style.liSection}>Home</li>
                         </Link>
-                        <li style={{ marginLeft: "40px" }} className={style.liSection}>My Projects</li>
+                        <li style={{ marginLeft: "40px" }} className={style.liSection}>My Projects </li>
+
+
                     </ul>
                 </div>
-                <div className="col-5">
+                <div className="col-2" style={{ marginTop: "6px" }}>
+                    <span > {ProjectName? <u style={{"textUnderlineOffset": "5px"}}> {ProjectName}</u>:"___________"}  </span>
+                </div>
+                <div className="col-3">
                     <div className={style.bottom}>
                         <p>NFT Generator</p>
                     </div>

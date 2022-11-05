@@ -5,7 +5,7 @@ import { HomePage } from "./MyComponents/homepage/HomePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GetStarted from "./MyComponents/GetStarted/GetStarted";
+import {GetStarted} from "./MyComponents/GetStarted/GetStarted";
 import { NftProvider } from "./MyComponents/context/NftProvider";
 import { Main } from "./MyComponents/GetStarted/Main/Main";
 import { OnBoard } from "./context/GlobalContext";

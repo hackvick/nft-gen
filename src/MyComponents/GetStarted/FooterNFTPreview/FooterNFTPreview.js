@@ -7,19 +7,14 @@ import AddLayer from "../../modals/AddLayer/AddLayer";
 import { useNftProvider } from "../../context/NftProvider";
 
 export const FooterNFTPreview = (props) => {
-  const { layerData, getLayer } = props;
+  const { layerData, getLayer , setSelectedLayerName} = props;
   const { layerId, setLayerId } = useNftProvider();
 
   const [layer, setLayer] = useState(false);
 
-  // let layerData = [];
-  // let layerId;
-  // let setLayerId = () => {};
-  // let setLayer = () => {};
-
   return (
     <>
-      <AddLayer getLayer={getLayer} show={layer} setShow={setLayer} />
+      <AddLayer setSelectedLayerName ={setSelectedLayerName} getLayer={getLayer} show={layer} setShow={setLayer} />
       <div className={style2.nftGenerate}>
         <div className="container p-0 h-100">
           <div className={style2.nftFooter}>
@@ -38,7 +33,7 @@ export const FooterNFTPreview = (props) => {
                       </div>
                     </div>
 
-                    <div className={style2.baby}>
+                    {/* <div className={style2.baby}>
                       <div className={style2.shape}>
                         <img src="red_close.png" alt="" />
                       </div>
@@ -53,7 +48,7 @@ export const FooterNFTPreview = (props) => {
                       >
                         <p>Background</p>
                       </div>
-                    </div>
+                    </div> */}
                     {layerData.map((layerData) => (
                       <div
                         className={`${style2.baby} ${
@@ -62,6 +57,8 @@ export const FooterNFTPreview = (props) => {
                         key={layerData._id}
                         onClick={() => {
                           setLayerId(layerData._id);
+                          console.log(layerData.name,"layerName footernft side ")
+                          setSelectedLayerName(layerData.name)
                         }}
                       >
                         <div className={style2.rectangle}>

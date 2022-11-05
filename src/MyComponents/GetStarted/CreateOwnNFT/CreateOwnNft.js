@@ -32,18 +32,19 @@ export const CreateOwnNft = (props) => {
             </div>
             {collectionData?.map((content, index) => {
               return (
+                
                 <li
                   key={index}
                   // className={content._id === collectionId ? style.active : ''}
                   onClick={() => handleCollectionHandler(content._id)}
                 >
+                {console.log(content._id,"content id createown side")}
+                {console.log(collectionId,"collectionId createOwn Side")}
                   <span className={style.imageWrapper}>
                     <a href="#">
                       <img
                         src={Mask}
-                        className={`${style.mainImg} ${
-                          content._id === collectionId ? style.active : ""
-                        }`}
+                        className={`${style.mainImg} ${content._id === collectionId ? style.active : ""}`}
                         alt="content"
                       />
                     </a>
