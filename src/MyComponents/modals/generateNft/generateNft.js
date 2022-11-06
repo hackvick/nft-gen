@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { saveAs } from "file-saver";
 import JSZipUtils from "jszip-utils";
+import {API_BASE_URL,GENERATE_NFT} from "../../../Api/Api"
 
 export const NftGenerator = (props) => {
   const { setToggle, toggle } = props;
@@ -42,7 +43,7 @@ export const NftGenerator = (props) => {
 
       console.log(fileName, "filename handle download side");
       JSZipUtils.getBinaryContent(
-        `http://localhost:8000${photo}`,
+        `${API_BASE_URL}${photo}`,
         function (err, data) {
           // console.log(data, "data zip file side");
           zip.file(fileName, data, { binary: true });
@@ -62,7 +63,7 @@ export const NftGenerator = (props) => {
     const token = localStorage.getItem("token");
     setLoader(true);
     await axios
-      .post("http://localhost:8000/api/user/generateNFT", data, {
+      .post(GENERATE_NFT, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

@@ -5,6 +5,7 @@ import plus from "../../../assets/asse/plus.png";
 import cross from "../../../assets/cross.png";
 import AddLayer from "../../modals/AddLayer/AddLayer";
 import { useNftProvider } from "../../context/NftProvider";
+import {API_BASE_URL} from "../../../Api/Api"
 
 export const FooterNFTPreview = (props) => {
   const { layerData, getLayer , setSelectedLayerName,getImageData} = props;
@@ -14,25 +15,7 @@ export const FooterNFTPreview = (props) => {
   console.log(layerData,"layerData footer nft side ")
   console.log(getImageData,"getImageData footer nft side ")
 
-  // const [currentLayerImg,setCurrentLayerImg] = useState() 
 
-  // useMemo(()=>{
-  //   // eslint-disable-next-line array-callback-return
-  //   getImageData.map((layerImg,i)=>{
-
-  //     console.log(layerImg.layerId,"layerimg id")
-  //     console.log(layerId,"global side ")
-  //     if(layerImg.layerId === layerId){
-  //      console.log(layerImg.imageUrl,"image url if side footer fn")
-  //      setCurrentLayerImg(layerImg.imageUrl)
-  //     }else{
-  //       console.log("not match layer id")
-  //     }
-  //    })
-  // },[layerId,getImageData])
-  
-
-  
   return (
     <>
        {/* {console.log(currentLayerImg,"currentLayerimg")} */}
@@ -94,7 +77,7 @@ export const FooterNFTPreview = (props) => {
                           </div>
                           <div className={style2.bitmap3}>
                           {/* <img src={""} alt="" /> */}
-                          {getImageData.length!==0?<img src={`http://localhost:8000${getImageData[0].imageUrl}`} alt="" />:""}
+                          {getImageData.length!==0?<img src={`${API_BASE_URL}${getImageData[0].imageUrl}`} alt="" />:""}
                           {/* {getImageData.length!==0?<img src={`http://localhost:8000${getImageData[0].imageUrl}`} alt="" />:""} */}
                           </div>
                         </div>

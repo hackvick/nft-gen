@@ -11,8 +11,10 @@ import { CreateOwnNft } from "./CreateOwnNFT/CreateOwnNft";
 import { useNftProvider } from "../context/NftProvider";
 import { FooterNFTPreview } from "./FooterNFTPreview/FooterNFTPreview";
 import { Spinner } from "react-bootstrap";
+import {GET_IMAGES_WITH_LAYER_ID,GET_LAYERS_WITH_COLLECTION_ID} from "../../Api/Api"
 // import { useNavigate } from "react-router-dom";
 // import NftGenerator from '../modals/generateNft'
+
 
 export const GetStarted = () => {
   const { collectionData,collectionId,setCollectionId,setLayerId,loader,setLoader,layerId} = useNftProvider();
@@ -33,7 +35,7 @@ export const GetStarted = () => {
     console.log(collection_Id, "get layer function side");
     // setLoader(true)
     axios
-      .get(`http://localhost:8000/api/user/getLayers/${collection_Id}`, {
+      .get(`${GET_LAYERS_WITH_COLLECTION_ID}${collection_Id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -54,7 +56,7 @@ export const GetStarted = () => {
     const token = localStorage.getItem("token");
     setLoader(true);
     axios
-      .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
+      .get(`${GET_IMAGES_WITH_LAYER_ID}${layerId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

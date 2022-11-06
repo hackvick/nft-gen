@@ -2,6 +2,7 @@ import React from "react";
 import style from "../GenerateNFTCollection/generateNftCollection.module.css";
 import backgroundImage from "../../../assets/0background.png";
 import { Slider } from "@mui/material";
+import {API_BASE_URL} from "../../../Api/Api"
 
 export const Rarity = (props) => {
   const { getImageData } = props;
@@ -13,7 +14,7 @@ export const Rarity = (props) => {
         {/* {console.log(layerImg,"layerImg rarity side ")} */}
           <hr className={style.bottomRight}></hr>
           <div key={i} className={style.raritySettingSet}>
-            <img src={`http://localhost:8000${layerImg.imageUrl}`} alt="background" />
+            <img src={`${API_BASE_URL}${layerImg.imageUrl}`} alt="background" />
             <div style={{ width: "310px", marginRight: "30px" }}>
               <Slider
                 size="small"

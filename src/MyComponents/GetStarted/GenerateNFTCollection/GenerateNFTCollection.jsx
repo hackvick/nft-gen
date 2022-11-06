@@ -7,11 +7,12 @@ import plus from "../../../assets/asse/plus.png";
 import setting from "../../../assets/asse/settings.png";
 import { NftGenerator } from "../../modals/generateNft/generateNft";
 import EditData from "../../modals/EditData";
-// import cross from "../../../assets/cross.png";
-import axios from "axios";
-// import { toast } from "react-toastify";
 import { Rarity } from "../Rarity.js/Rarity";
 import { useNftProvider } from "../../context/NftProvider";
+import {API_BASE_URL} from "../../../Api/Api"
+// import { toast } from "react-toastify";
+// import axios from "axios";
+// import cross from "../../../assets/cross.png";
 
 export const GenerateNFT = (props) => {
   const { layerData ,selectedLayerName,getImageData,setGetImageData,getImages} = props
@@ -32,25 +33,6 @@ export const GenerateNFT = (props) => {
   }, [layerId]);
 
   const handleShow = () => setToggle(true);
-
-  // const getImages = () => {
-  //   const token = localStorage.getItem("token");
-  //   setLoader(true);
-  //   axios
-  //     .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       setGetImageData(res.data.data.Images);
-  //       console.log(res.data.data.Images, "Image get data");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  //     .finally(() => {
-  //       setLoader(false);
-  //     });
-  // };
 
   return (
     <div className={style.nftGenerate}>
@@ -77,7 +59,7 @@ export const GenerateNFT = (props) => {
                       <div className={style.hidenft}>
                         <span className={style.layerImages}>
                           <img
-                            src={`http://localhost:8000${layerImg.imageUrl}`}
+                            src={`${API_BASE_URL}${layerImg.imageUrl}`}
                             alt="plus"
                           />
                         </span>
@@ -131,9 +113,7 @@ export const GenerateNFT = (props) => {
                       <div className={style.setting}>
                         <h2>Layer Settings</h2>
                       </div>
-                      {/* {layerData.map((data) => (
-                        <></>
-                      ))} */}
+                      
                       <div className={style.currentLayer}>
                         <label className={style.labelLayer}>Layer Name</label>
                         <input className="form-control" type="text" value={selectedLayerName} />
@@ -160,36 +140,6 @@ export const GenerateNFT = (props) => {
                     ""
                   )}
                   {/* rarity setting ends here */}
-
-                  {/* <div className={style.raritySettingSet}>
-                    <img src={backgroundImage} alt="background" />
-                    <div style={{ width: "310px", marginRight: "30px" }}>
-                      <Slider
-                        size="small"
-                        defaultValue={70}
-                        max={200}
-                        aria-label="Small"
-                        className="mx-3"
-                        // onChange={updateVal}
-                      />
-                    </div>
-                    <button className="btn btn-light">25.00</button>
-                  </div> */}
-                  {/* <hr className={style.bottomRight}></hr>
-                  <div className={style.raritySettingSet}>
-                    <img src={backgroundImage} alt="background" />
-                    <div style={{ width: "310px", marginRight: "30px" }}>
-                      <Slider
-                        size="small"
-                        defaultValue={70}
-                        max={200}
-                        aria-label="Small"
-                        className="mx-3"
-                        // onChange={updateVal}
-                      />
-                    </div>
-                    <button className="btn btn-light">25.00</button>
-                  </div> */}
                 </div>
               </div>
             </div>
