@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useMemo} from "react";
 import style2 from "../GenerateNFTCollection/generateNftCollection.module.css";
 import backgroundImage from "../../../assets/0background.png";
 import plus from "../../../assets/asse/plus.png";
@@ -7,14 +7,36 @@ import AddLayer from "../../modals/AddLayer/AddLayer";
 import { useNftProvider } from "../../context/NftProvider";
 
 export const FooterNFTPreview = (props) => {
-  const { layerData, getLayer , setSelectedLayerName} = props;
+  const { layerData, getLayer , setSelectedLayerName,getImageData} = props;
   const { layerId, setLayerId } = useNftProvider();
-
   const [layer, setLayer] = useState(false);
 
+  console.log(layerData,"layerData footer nft side ")
+  console.log(getImageData,"getImageData footer nft side ")
+
+  // const [currentLayerImg,setCurrentLayerImg] = useState() 
+
+  // useMemo(()=>{
+  //   // eslint-disable-next-line array-callback-return
+  //   getImageData.map((layerImg,i)=>{
+
+  //     console.log(layerImg.layerId,"layerimg id")
+  //     console.log(layerId,"global side ")
+  //     if(layerImg.layerId === layerId){
+  //      console.log(layerImg.imageUrl,"image url if side footer fn")
+  //      setCurrentLayerImg(layerImg.imageUrl)
+  //     }else{
+  //       console.log("not match layer id")
+  //     }
+  //    })
+  // },[layerId,getImageData])
+  
+
+  
   return (
     <>
-      <AddLayer setSelectedLayerName ={setSelectedLayerName} getLayer={getLayer} show={layer} setShow={setLayer} />
+       {/* {console.log(currentLayerImg,"currentLayerimg")} */}
+      <AddLayer  getLayer={getLayer} show={layer} setShow={setLayer} />
       <div className={style2.nftGenerate}>
         <div className="container p-0 h-100">
           <div className={style2.nftFooter}>
@@ -50,6 +72,7 @@ export const FooterNFTPreview = (props) => {
                       </div>
                     </div> */}
                     {layerData.map((layerData) => (
+                      <>          
                       <div
                         className={`${style2.baby} ${
                           layerData._id === layerId ? style2.active : ""
@@ -61,18 +84,26 @@ export const FooterNFTPreview = (props) => {
                           setSelectedLayerName(layerData.name)
                         }}
                       >
+                            {getImageData.map((layerimg)=>(<>
+                              
+                            </>))}
+                            {console.log(getImageData,"get img data footer side")}
                         <div className={style2.rectangle}>
                           <div className={style2.shape}>
                             <img src={cross} alt="" />
                           </div>
                           <div className={style2.bitmap3}>
-                            <img src={backgroundImage} alt="" />
+                          {/* <img src={""} alt="" /> */}
+                          {getImageData.length!==0?<img src={`http://localhost:8000${getImageData[0].imageUrl}`} alt="" />:""}
+                          {/* {getImageData.length!==0?<img src={`http://localhost:8000${getImageData[0].imageUrl}`} alt="" />:""} */}
                           </div>
                         </div>
                         <div className={style2.preview}>
                           <p>{layerData.name}</p>
                         </div>
                       </div>
+                      </>
+
                     ))}
                   </div>
                   <div className="col-4">

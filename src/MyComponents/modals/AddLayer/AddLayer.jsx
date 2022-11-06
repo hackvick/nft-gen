@@ -11,7 +11,7 @@ import { useNftProvider } from "../../context/NftProvider";
 
 const AddLayer = (props) => {
   const { setLayerId, collectionId, loader, setLoader } = useNftProvider();
-  const { getLayer, setShow, show ,setSelectedLayerName} = props;
+  const { getLayer, setShow, show ,handleStartProject} = props;
 
   const [layer, setLayer] = useState("");
   // const [upload, setUpload] = useState(false);
@@ -45,6 +45,7 @@ const AddLayer = (props) => {
         // setSelectedLayerName(res.data.data.layer.name)
         setShow(false);
         getLayer(collectionId,res.data.data.layer.name);
+        handleStartProject()
         toast.success("Layer Added Successfully");
         formik.resetForm();
       })

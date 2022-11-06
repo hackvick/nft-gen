@@ -10,7 +10,7 @@ export const Rarity = (props) => {
     {/* {console.log(getImageData,"getimgdata rarity side")} */}
       {getImageData.map((layerImg,i) => (
         <>
-        {console.log(layerImg,"layerImg rarity side ")}
+        {/* {console.log(layerImg,"layerImg rarity side ")} */}
           <hr className={style.bottomRight}></hr>
           <div key={i} className={style.raritySettingSet}>
             <img src={`http://localhost:8000${layerImg.imageUrl}`} alt="background" />

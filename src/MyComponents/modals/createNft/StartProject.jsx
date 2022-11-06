@@ -20,7 +20,7 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
   const [width, setWidth] = useState("");
 
   const handleClose = () => setShow(false);
-
+  const handleStartProject = ()=> setCollectionCreated(false)
   const data = { name, height, width };
 
   const handleSize = (e) => {
@@ -109,7 +109,7 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
         </Modal>
       ) : (
         <>
-          <AddLayer setShow={setShow} show={show} getLayer={getLayer} />
+          <AddLayer handleStartProject={handleStartProject} setShow={setShow} show={show} getLayer={getLayer} />
         </>
       )}
     </div>

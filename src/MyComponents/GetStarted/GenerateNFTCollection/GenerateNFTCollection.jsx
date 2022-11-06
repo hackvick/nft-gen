@@ -14,13 +14,12 @@ import { Rarity } from "../Rarity.js/Rarity";
 import { useNftProvider } from "../../context/NftProvider";
 
 export const GenerateNFT = (props) => {
-  const { setLayerData, layerData , selectedLayerName} = props
+  const { layerData ,selectedLayerName,getImageData,setGetImageData,getImages} = props
   const { layerId, setLoader } = useNftProvider();
   const [show, setShow] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [edit, setEdit] = useState(false);
   const [uploadData, setUploadData] = useState([]);
-  const [getImageData, setGetImageData] = useState([]);
 
   useEffect(() => {
     // Fetching other layer images when LayerId changes
@@ -34,24 +33,24 @@ export const GenerateNFT = (props) => {
 
   const handleShow = () => setToggle(true);
 
-  const getImages = () => {
-    const token = localStorage.getItem("token");
-    setLoader(true);
-    axios
-      .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setGetImageData(res.data.data.Images);
-        console.log(res.data.data.Images, "Image get data");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoader(false);
-      });
-  };
+  // const getImages = () => {
+  //   const token = localStorage.getItem("token");
+  //   setLoader(true);
+  //   axios
+  //     .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setGetImageData(res.data.data.Images);
+  //       console.log(res.data.data.Images, "Image get data");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  //     .finally(() => {
+  //       setLoader(false);
+  //     });
+  // };
 
   return (
     <div className={style.nftGenerate}>
