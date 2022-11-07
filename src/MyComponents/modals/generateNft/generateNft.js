@@ -28,19 +28,15 @@ export const NftGenerator = (props) => {
   };
 
   const generateNFT = () => {
+    console.log(data,"dataa");
     const token = localStorage.getItem("token");
     axios
       .post("http://localhost:8000/api/user/generateNFT", data, { 
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        
         console.log(res, "response nft generated modal side");
-        var zip = new JSZip();
-             console.log(" zip ke andr");
-	zip.add("hello1.txt", "Hello First World\n");
-	zip.add("hello2.txt", "Hello Second World\n");
-	  let content = zip.generate();
-	 window.location.href="data:application/zip;base64," + content;
         setGeneratedNftUrl(res);
       })
       .catch((err) => {
