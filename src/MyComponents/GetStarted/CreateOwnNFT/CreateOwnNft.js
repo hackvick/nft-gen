@@ -12,6 +12,7 @@ export const CreateOwnNft = (props) => {
 
   return (
     <>
+     {/* {console.log(style.active,"style active create own nft side")} */}
       <div className={`${style.bottomBar}`}>
         <div className={style.inputContainer}>
           <img src={search} alt="search" className="mx-3" />
@@ -40,13 +41,15 @@ export const CreateOwnNft = (props) => {
                   // className={content._id === collectionId ? style.active : ''}
                   onClick={() => handleCollectionHandler(content._id)}
                 >
+                {content._id === collectionId?
+                <>
+                {console.log(content._id,"content id createown side")}
+                {console.log(collectionId,"collectionId createOwn Side")} </>:""}
                   <span className={style.imageWrapper}>
                     <a href="#">
                       <img
                         src={Mask}
-                        className={`${style.mainImg} ${
-                          content._id === collectionId ? style.active : ""
-                        }`}
+                        className={`${style.mainImg} ${content._id === collectionId ? style.active : ""}`}
                         alt="content"
                       />
                     </a>

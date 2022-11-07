@@ -924,3 +924,6 @@ span .imageWrapper {
 .layer_add {
   width: 69.4% !important;
 }
+.disable{
+  border: 0px
+}

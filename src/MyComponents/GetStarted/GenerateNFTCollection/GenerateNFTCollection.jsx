@@ -5,19 +5,22 @@ import backgroundImage from "../../../assets/0background.png";
 import { Slider } from "@mui/material";
 import plus from "../../../assets/asse/plus.png";
 import setting from "../../../assets/asse/settings.png";
-import { NftGenerator } from "../../modals/generateNft";
+import { NftGenerator } from "../../modals/generateNft/generateNft";
 import EditData from "../../modals/EditData";
-// import AddLayer from "../../modals/AddLayer/AddLayer";
-import cross from "../../../assets/cross.png";
+// import cross from "../../../assets/cross.png";
 import axios from "axios";
-
-import { toast } from "react-toastify";
-
+// import { toast } from "react-toastify";
+import { Rarity } from "../Rarity.js/Rarity";
 import { useNftProvider } from "../../context/NftProvider";
 
-export const GenerateNFT = ({ setLayerData, layerData }) => {
-  //eslint-disable-next-line
-  const { layerId, setLayerId, loader, setLoader } = useNftProvider();
+export const GenerateNFT = (props) => {
+  const { setLayerData, layerData , selectedLayerName} = props
+  const { layerId, setLoader } = useNftProvider();
+  const [show, setShow] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [uploadData, setUploadData] = useState([]);
+  const [getImageData, setGetImageData] = useState([]);
 
   useEffect(() => {
     // Fetching other layer images when LayerId changes
@@ -29,22 +32,10 @@ export const GenerateNFT = ({ setLayerData, layerData }) => {
     //eslint-disable-next-line
   }, [layerId]);
 
-  const token = localStorage.getItem("token");
-
-  const [show, setShow] = useState(false);
-  const [toggle, setToggle] = useState(false);
-  // const [layer, setLayer] = useState(false);
-  const [edit, setEdit] = useState(false);
-
-  //eslint-disable-next-line
-  const [uploadData, setUploadData] = useState([]);
-  const handleShow = () => {
-    setToggle(true);
-  };
-
-  const [getImageData, setGetImageData] = useState([]);
+  const handleShow = () => setToggle(true);
 
   const getImages = () => {
+    const token = localStorage.getItem("token");
     setLoader(true);
     axios
       .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
@@ -62,45 +53,17 @@ export const GenerateNFT = ({ setLayerData, layerData }) => {
       });
   };
 
-  const submitHandler = (e, setUpload, handleClose) => {
-    e.preventDefault();
-    let formData = new FormData(e.target);
-    setLoader(true);
-    axios
-      .post(
-        `http://localhost:8000/api/user/uploadImages/${layerId}`,
-        formData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-      .then((res) => {
-        setUploadData(res);
-        handleClose();
-        setUpload(false);
-        getImages();
-        toast.success("Image Uploaded Successfully");
-      })
-      .catch((err) => {
-        console.log(err?.response);
-        toast.error(
-          err?.response?.data?.message ??
-            "Something went wrong! Please select collection and then layer"
-        );
-        setLoader(false);
-      })
-      .finally(() => {
-        setLoader(false);
-      });
-  };
-
   return (
     <div className={style.nftGenerate}>
+      {/* {console.log(layerData, "layerData genrate nft collection side ")} */}
+       {/* {console.log(selectedLayerName,"selectedLayerNAme generatenft side")} */}
       <UploadImage
-        submitHandler={submitHandler}
+        setUploadData={setUploadData}
+        getImages={getImages}
         setShow={setShow}
         show={show}
       />
       <NftGenerator toggle={toggle} setToggle={setToggle} />
-      {/* <AddLayer getLayer={getLayer} show={layer} setShow={setLayer} /> */}
       <EditData show={edit} setShow={setEdit} />
 
       <div className="container p-0 h-100">
@@ -110,11 +73,12 @@ export const GenerateNFT = ({ setLayerData, layerData }) => {
               <ul className={style.categoryList}>
                 {getImageData.map((layerImg, i) => (
                   <>
+                    {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
                     <li key={i}>
                       <div className={style.hidenft}>
                         <span className={style.layerImages}>
                           <img
-                            src={`http://localhost:8000/${layerImg.imageUrl}`}
+                            src={`http://localhost:8000${layerImg.imageUrl}`}
                             alt="plus"
                           />
                         </span>
@@ -163,22 +127,56 @@ export const GenerateNFT = ({ setLayerData, layerData }) => {
                   </div>
                 </div>
                 <div className={style.layerBottomSection}>
-                  <div className={style.setting}>
-                    <h2>Layer Settings</h2>
-                  </div>
-                  <div className={style.currentLayer}>
-                    <label className={style.labelLayer}>Layer Name</label>
-                    <input className="form-control" type="text" />
-                  </div>
-                  <div className={style.raritySetting}>
-                    <h2>
-                      Rarity Settings
-                      <span title="reset">
-                        <a className={style.resetBtn}>Reset</a>
-                      </span>
-                    </h2>
-                  </div>
-                  <hr className={style.bottomRight}></hr>
+                  {layerData.length !== 0 ? (
+                    <>
+                      <div className={style.setting}>
+                        <h2>Layer Settings</h2>
+                      </div>
+                      {/* {layerData.map((data) => (
+                        <></>
+                      ))} */}
+                      <div className={style.currentLayer}>
+                        <label className={style.labelLayer}>Layer Name</label>
+                        <input className="form-control" type="text" value={selectedLayerName} />
+                      </div>
+
+                      <div className={style.raritySetting}>
+                        <h2>
+                          Rarity Settings
+                          <span title="reset">
+                            <a className={style.resetBtn}>Reset</a>
+                          </span>
+                        </h2>
+                      </div>
+
+                      {/* rarity setting start here */}
+
+                      {getImageData.length !== 0 ? (
+                        <Rarity getImageData={getImageData} />
+                      ) : (
+                        ""
+                      )}
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {/* rarity setting ends here */}
+
+                  {/* <div className={style.raritySettingSet}>
+                    <img src={backgroundImage} alt="background" />
+                    <div style={{ width: "310px", marginRight: "30px" }}>
+                      <Slider
+                        size="small"
+                        defaultValue={70}
+                        max={200}
+                        aria-label="Small"
+                        className="mx-3"
+                        // onChange={updateVal}
+                      />
+                    </div>
+                    <button className="btn btn-light">25.00</button>
+                  </div> */}
+                  {/* <hr className={style.bottomRight}></hr>
                   <div className={style.raritySettingSet}>
                     <img src={backgroundImage} alt="background" />
                     <div style={{ width: "310px", marginRight: "30px" }}>
@@ -192,129 +190,14 @@ export const GenerateNFT = ({ setLayerData, layerData }) => {
                       />
                     </div>
                     <button className="btn btn-light">25.00</button>
-                  </div>
-                  <hr className={style.bottomRight}></hr>
-                  <div className={style.raritySettingSet}>
-                    <img src={backgroundImage} alt="background" />
-                    <div style={{ width: "310px", marginRight: "30px" }}>
-                      <Slider
-                        size="small"
-                        defaultValue={70}
-                        max={200}
-                        aria-label="Small"
-                        className="mx-3"
-                        // onChange={updateVal}
-                      />
-                    </div>
-                    <button className="btn btn-light">25.00</button>
-                  </div>
-                  <hr className={style.bottomRight}></hr>
-                  <div className={style.raritySettingSet}>
-                    <img src={backgroundImage} alt="background" />
-                    <div style={{ width: "310px", marginRight: "30px" }}>
-                      <Slider
-                        size="small"
-                        defaultValue={70}
-                        max={200}
-                        aria-label="Small"
-                        className="mx-3"
-                        // onChange={updateVal}
-                      />
-                    </div>
-                    <button className="btn btn-light">25.00</button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-         {/*nft preview footer start here  */}
-        {/* <div className={style.nftFooter}>
-          <div className={style.image}>
-            <div className={style.outterDiv}>
-              <div className={style.inside}>
-                <div className={`col-8 ${style.nftColBottom}`}>
-                  <div className={style.parent}>
-                    <div className={style.rectangle1}>
-                      <div className={style.bitmap3}>
-                        <img src={backgroundImage} alt="" />
-                      </div>
-                    </div>
-                    <div className={style.preview}>
-                      <p>Preview</p>
-                    </div>
-                  </div>
-
-                  <div className={style.baby}>
-                    <div className={style.shape}>
-                      <img src="red_close.png" alt="" />
-                    </div>
-                    <div className={style.rectangle}>
-                      <div className={style.bitmap1}>
-                        <img src={backgroundImage} alt="" />
-                      </div>
-                    </div>
-                    <div
-                      className={style.preview}
-                      style={{ marginRight: "18px" }}
-                    >
-                      <p>Background</p>
-                    </div>
-                  </div>
-                  {layerData.map((layerData) => (
-                    <div
-                      className={`${style.baby} ${
-                        layerData._id === layerId ? style.active : ""
-                      }`}
-                      key={layerData._id}
-                      onClick={() => {
-                        setLayerId(layerData._id);
-                      }}
-                    >
-                      <div className={style.rectangle}>
-                        <div className={style.shape}>
-                          <img src={cross} alt="" />
-                        </div>
-                        <div className={style.bitmap3}>
-                          <img src={backgroundImage} alt="" />
-                        </div>
-                      </div>
-                      <div className={style.preview}>
-                        <p>{layerData.name}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="col-4">
-                  <div className={style.layerBaby}>
-                    <div className={style.addLayer}>
-                      <div
-                        className={style.moreDiv}
-                        onClick={() => {
-                          setLayer(true);
-                        }}
-                      >
-                        <div className={style.oval}>
-                          <div className={style.path}>
-                            <img src={plus} alt="" />
-                          </div>
-                        </div>
-                        <div className={style.addLayerP1}>
-                          <p>Add Layer</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-         {/*nft preview footer ends here  */}
-
+        {/*  */}
       </div>
     </div>
   );
 };
-

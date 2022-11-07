@@ -3,85 +3,57 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import style from "./generateNft.module.css";
 import { useNftProvider } from "../../context/NftProvider";
-import JSZip from "jszip-utils";
-import { saveAs } from "file-saver";
+import { JSZip } from "jszip-utils";
 import axios from "axios";
 import { toast } from "react-toastify";
-import $ from "jquery";
 
-export const NftGenerator = ({ setToggle, toggle }) => {
-  const handleClose = () => {
-    setToggle(false);
-  };
-  const handleCloseGenerate = () => {
-    setGenerate(false);
-  };
-  // const downloadFile = () => {
-  //   const link = document.createElement('a');
-  //   link.href = downloadUrl;
-  //   link.setAttribute('download', 'file.zip'); //set download attribute to link
-  //   document.body.appendChild(link);
-  //   link.click(); // this will download file.zip
-  //   link.parentNode.removeChild(link);
-  // }
-  const [generate, setGenerate] = useState(false);
-  const [downloadData, setDownloadData] = useState(false);
-  const [copy, setCopy] = useState("");
-  const handleCreate = () => {
-    handleClose();
-    setGenerate(true);
-  };
+export const NftGenerator = (props) => {
+  const { setToggle, toggle } = props;
   const { collectionId } = useNftProvider();
 
-  const editions = parseInt(copy);
-
-  console.log(collectionId, "Collection54687584");
-  const token = localStorage.getItem("token");
+  const [generate, setGenerate] = useState(false);
+  const [generatedNftUrl, setGeneratedNftUrl] = useState();
+  const [numberOfEditions, setNumberOfEditions] = useState("");
+  const editions = parseInt(numberOfEditions);
   const data = {
     editions,
     collectionId,
   };
-  const download = async () => {
+
+  const handleClose = () => setToggle(false);
+  const handleCloseGenerate = () => setGenerate(false);
+  const handleCreate = () => {
+    handleClose();
+    setGenerate(true);
+  };
+
+  const generateNFT = () => {
+    const token = localStorage.getItem("token");
     axios
-      .post("http://localhost:8000/api/user/generateNFT", data, {
+      .post("http://localhost:8000/api/user/generateNFT", data, { 
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("aas");
-        setDownloadData(res);
-        console.log(res);
-        console.log(res.data.data.nfts);
-        //
-        // Fetch the image and parse the response stream as a blob
-        // const imageBlob =  fetch(`[http://localhost:8000 ${res.data.data.nfts}]`).then(response => response.blob());
-
-        // create a new file from the blob object
-        // const imgData = new File([imageBlob], 'filenadme.jpg');
-
-        // Copy-pasted from JSZip documentation
-        // var zip = new JSZip();
-        // zip.file('Hello.txt', 'Hello World\n');
-        // var img = zip.folder('images');
-        // img.file('smile.gif', imgData, { base64: true });
-        // zip.generateAsync({ type: 'blob' }).then(function(content) {
-        //   saveAs(content, 'example.zip');
-        // });
-
-        //
-             var zip = new JSZip();
+        console.log(res, "response nft generated modal side");
+        var zip = new JSZip();
+             console.log(" zip ke andr");
 	zip.add("hello1.txt", "Hello First World\n");
 	zip.add("hello2.txt", "Hello Second World\n");
 	  let content = zip.generate();
 	 window.location.href="data:application/zip;base64," + content;
+        setGeneratedNftUrl(res);
       })
       .catch((err) => {
-        toast.error("Try again");
+        console.log(err, "err generate nft modal side ");
+        toast.error(err.response.data ? err.response.data.message : err, "check console");
       });
   };
 
   return (
     <>
       <div>
+        {console.log(collectionId, "collection id generate nft modal side")}
+
         <Modal show={toggle} onHide={handleClose} className="nftGenerateModal">
           <Modal.Header closeButton className={style.generateHeader}>
             <h5>Generate NFT</h5>
@@ -102,6 +74,7 @@ export const NftGenerator = ({ setToggle, toggle }) => {
       </div>
 
       <div>
+      {/* Download Nft Modal start here */}
         <Modal
           show={generate}
           onHide={handleCloseGenerate}
@@ -115,17 +88,16 @@ export const NftGenerator = ({ setToggle, toggle }) => {
             <input
               className="form-control"
               placeholder="Enter the number of you want to generate"
-              value={copy}
-              onChange={(e) => setCopy(e.target.value)}
+              value={numberOfEditions}
+              onChange={(e) => setNumberOfEditions(e.target.value)}
               type="number"
             />
             <Button
               variant="primary"
-              id="blob"
               className={style.Btn}
-              onClick={download}
+              onClick={generateNFT}
             >
-              Download NFt
+              Download NFT
             </Button>
           </Modal.Footer>
         </Modal>

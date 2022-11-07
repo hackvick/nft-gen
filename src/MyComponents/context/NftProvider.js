@@ -7,12 +7,13 @@ export const GlobalNftContext = createContext();
 export const NftProvider = ({ children }) => {
   const [layerId, setLayerId] = useState("");
   const [collectionId, setCollectionId] = useState("");
-  const [collectionData, setCollectionData] = useState()
+  const [collectionData, setCollectionData] = useState([])
   const [loader, setLoader] = useState(false) 
 
   useEffect(() => {
     getCollections();
-  },[setCollectionData]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[collectionId,setCollectionData,layerId]);
 
   const token = localStorage.getItem("token");
 
@@ -22,7 +23,9 @@ export const NftProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setCollectionData(res.data.data.collections);
+        if(res.data.data.collections){
+          setCollectionData(res.data.data.collections);
+        }
        
       })
       .catch((err) => {
@@ -42,7 +45,11 @@ export const NftProvider = ({ children }) => {
         loader:loader
       }}
     >
-      {console.log(collectionData, "collectionData context side")}
+      {/* {console.log(collectionData, "collectionData context side")} */}
+      {console.log(collectionId, "collectionId context side")}
+      {console.log(layerId, "layerId context side")}
+
+
 
       {children}
     </GlobalNftContext.Provider>
