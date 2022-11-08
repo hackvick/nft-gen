@@ -43,7 +43,6 @@ const AddLayer = (props) => {
           "layerID add layer fn or api  side "
         );
         setLayerId(res.data.data.layer._id);
-        // setSelectedLayerName(res.data.data.layer.name)
         setShow(false);
         getLayer(collectionId,res.data.data.layer.name);
         //handleStartProject is Used To reopen Start Project Modal or create Collections
