@@ -4,6 +4,14 @@ import style from './Navbar.module.css'
 import { RiArrowDropDownFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
+const styleProjectName = {
+    "font-size": "16px",
+    "font-weight": "500",
+    "line-height": "17px",
+    "font-family": "Poppins",
+  };
+
+
 const Navbar = (props) => {
     const {ProjectName} = props
 
@@ -24,12 +32,11 @@ const Navbar = (props) => {
 
                     </ul>
                 </div>
-                {/* <div className="col-2" style={{ marginTop: "6px" }}>
-                    <span > {ProjectName? <u style={{"textUnderlineOffset": "5px"}}> {ProjectName}</u>:"___________"}  </span>
-                </div> */}
+                <div className="col-2" style={{ marginTop: "-6px" }}>
+                {ProjectName ? <span style={styleProjectName}>{ProjectName}</span> : ""}                </div>
                 <div className="col-3">
                     <div className={style.bottom}>
-                        <p>NFT Generator</p>
+                        <p style={{"marginRight": "190px"}}>NFT Generator</p>
                     </div>
                 </div>
                 <div className="col-3" style={{  }}>

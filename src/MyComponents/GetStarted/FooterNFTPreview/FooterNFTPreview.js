@@ -38,7 +38,7 @@ export const FooterNFTPreview = (props) => {
                         </div>
                       </div>
 
-                      <div className={style2.baby}>
+                      {/* <div className={style2.baby}>
                         <div className={style2.shape}>
                           <img src="red_close.png" alt="" />
                         </div>
@@ -53,7 +53,7 @@ export const FooterNFTPreview = (props) => {
                         >
                           <p>Background</p>
                         </div>
-                      </div>
+                      </div> */}
 
                       {layerData.map((layerData) => (
                         <>
