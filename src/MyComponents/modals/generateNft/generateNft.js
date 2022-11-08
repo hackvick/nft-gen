@@ -67,7 +67,7 @@ export const NftGenerator = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data.data.nfts, "response nft generated modal side");
+        console.log(res,"res");
         setGeneratedNftUrl(res.data.data.nfts);
         handleDownload(res.data.data.nfts);
       })
