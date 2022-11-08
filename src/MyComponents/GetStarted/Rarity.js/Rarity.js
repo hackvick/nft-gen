@@ -8,6 +8,7 @@ export const Rarity = (props) => {
   const { getImageData } = props;
   return (
     <>
+    <div className={style.rarity_options}>
     {/* {console.log(getImageData,"getimgdata rarity side")} */}
       {getImageData.map((layerImg,i) => (
         <>
@@ -28,9 +29,9 @@ export const Rarity = (props) => {
             <button className="btn btn-light">25.00</button>
           </div>
 
-          <hr className={style.bottomRight}></hr>
         </>
       ))}
+      </div>
     </>
   );
 };

@@ -46,28 +46,34 @@
 }
 .displaySetting{
     display: flex;
-    height:100vh;
+    height: calc(100vh - 82px);
     width: 100%;
 }
 
 .layerImages img{
-    height: 116px;
-    width: 177px;
-    padding: 0px 22px;
+    height: 100%;
+    width: 100%;
+    padding: 0 28px;
 }
 .nftColBottom{
     display: flex;
-    overflow: overlay;
-    background-color: #efefef;
+    width: 73.2% !important;
+    /* background-color: #efefef; */
 }
-
-.categoryList{
+.nft_center{
     background-color: #fafafa;
-    width: 74%;
-    height: 86%;
-    padding: 91px 0px 20px 26px;
-    overflow: auto;
+    width: 72%;
+    height: calc(100% - 115px);
+    background: #F9F9F9;
+    padding: 20px 0 20px 20px;
     grid-template-columns: repeat(auto-fit,minmax(100px, 1fr));
+}
+.categoryList{
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
+    overflow:auto
 }
 ul{
     margin-top: 0;
@@ -76,25 +82,24 @@ ul{
 .categoryList li{
     float: left;
     list-style: none;
-    width: 30%;
-    margin: 1%;
+    width: 185px;
+    margin: 2% 28px;
+    height: 130px;
+    text-align: center;
 }
 .hidenft{
-    margin-right: 0px;
-    margin-bottom: 0px !important;
-    border: 1px solid #e5e8eb;
     background: #fff;
-    height: 118px;
-    opacity: 0.85;
+    height: 100%;
+    width: 100%;
 }
 .nftCursor{
-    text-indent: unset;
     background: transparent;
     border-radius: initial;
-    height: 92px;
     display: flex;
+    padding: 0 22px;
+    height: 100%;
+    width: 100%;
     align-items: center;
-    margin: 0px auto;
 }
 span.uploadImage{
     position: relative;
@@ -105,10 +110,11 @@ span.uploadImage{
 .photoNft{
     display: block;
     text-align: center;
-    position: relative !important;
     width: 100%;
-    font-size: 14px;
-    font-weight: 400;
+    color: #47494E;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 500;
     font-family: 'Poppins', sans-serif;
 
 }
@@ -118,8 +124,8 @@ span.uploadImage{
 }
 .LayerSettingBottom{
     right: 0px;
-    width: 26%;
-    height: 100%;
+    width: 28%;
+    height: calc(100% - 115px);
     background: #efefef;
     display: block;
     border: 1px solid #dddddd;
@@ -142,6 +148,7 @@ span.uploadImage{
 }
 .layerBottomSection{
     padding: 0px 8px;
+    height: calc(100% - 56px);
 }
 .labelLayer{
     margin-bottom: 5px;
@@ -167,11 +174,16 @@ span.uploadImage{
     text-decoration: underline;
     color: red !important;
 }
+.rarity_options{
+    padding: 0px 15px 0px 0;
+    margin: 15px 0 10px;
+    height: calc(100% - 166px);
+    overflow-x: hidden;
+}
 .nftFooter{
-    border: 1px solid #ddd;
     margin: 0px;
     position: absolute;
-    width: 105%;
+    width: 100%;
     bottom: 0px;
 }
 .previewImages{
@@ -214,7 +226,6 @@ span.uploadImage{
     position: relative;
 } */
 .nftColBottom{
-    width: 70.6% !important;
 }
 .nftFooter ul li button span{
     font-size: 12px;
@@ -293,7 +304,7 @@ span.uploadImage{
 
 .image {
     box-sizing: border-box;
-    height: 114px;
+    height: 115px;
     border: 1px solid #CFCFCF;
   }
   .parent {
@@ -319,9 +330,7 @@ span.uploadImage{
   }
   .inside {
       width: 100%;
-    display: flex;
-    justify-content: space-between;
-  
+      margin: 0;
   }
   .rectangle {
     box-sizing: border-box;
@@ -444,6 +453,9 @@ span.uploadImage{
   position: relative;
   }
 
+  .add_layer{
+    width: 26.8% !important;
+}
 .active{
     border: 5px solid blue;
 }

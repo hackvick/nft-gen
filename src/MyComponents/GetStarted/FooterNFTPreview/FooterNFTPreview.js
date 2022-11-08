@@ -25,7 +25,7 @@ export const FooterNFTPreview = (props) => {
           <div className={style2.nftFooter}>
             <div className={style2.image}>
               <div className={style2.outterDiv}>
-                <div className={style2.inside}>
+                <div className={`row ${style2.inside}`}>
 
                   <div className={`col-8 ${style2.nftColBottom } layer_add`}>
                     
@@ -57,7 +57,7 @@ export const FooterNFTPreview = (props) => {
                         <p>Background</p>
                       </div>
                     </div>
-              </div>
+                  </div>
 
                     {layerData.map((layerData) => (
                       <>          
@@ -68,6 +68,7 @@ export const FooterNFTPreview = (props) => {
                         key={layerData._id}
                         onClick={() => {
                           setLayerId(layerData._id);
+                          setSelectedLayerName(layerData.name)
                         }}
                       >
                             {getImageData.map((layerimg)=>(<>
@@ -79,9 +80,9 @@ export const FooterNFTPreview = (props) => {
                             <img src={cross} alt="" />
                           </div>
                           <div className={style2.bitmap3}>
-                          {/* <img src={""} alt="" /> */}
+                         
                           {getImageData.length!==0?<img src={`${API_BASE_URL}${getImageData[0].imageUrl}`} alt="" />:""}
-                          {/* {getImageData.length!==0?<img src={`http://localhost:8000${getImageData[0].imageUrl}`} alt="" />:""} */}
+                          
                           </div>
                         </div>
                         <div className={style2.preview}>
@@ -93,7 +94,7 @@ export const FooterNFTPreview = (props) => {
                     ))}
 
                   </div>
-                  <div className="col-4 add_layer">
+                  <div className={`col-4 ${style2.add_layer}`}>
                     <div className={style2.layerBaby}>
                       <div className={style2.addLayer}>
                         <div

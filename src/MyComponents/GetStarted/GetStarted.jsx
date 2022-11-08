@@ -99,7 +99,7 @@ useMemo(() => {
 
   return (
     <div
-      className={`container-fluid m-0 ${style.getStarted} position-relative`}
+      className={`container-fluid ${style.getStarted} position-relative`}
     >
     {console.log(selectedLayerName," selected layerName get started side")}
       <div>
@@ -113,7 +113,7 @@ useMemo(() => {
         />
 
         <Navbar ProjectName = {projectName}/>
-
+      <section className={style.main_content}>
         <div className={`row m-0 g-0 ${style.customCols} `}>
           <CustomNFT />
           <CreateOwnNft
@@ -128,6 +128,7 @@ useMemo(() => {
             <FooterNFTPreview getImageData = {getImageData} setSelectedLayerName = {setSelectedLayerName} layerData={layerData} getLayer={getLayer} />
           </div>
         </div>
+      </section>
       </div>
 
       {loader && (
