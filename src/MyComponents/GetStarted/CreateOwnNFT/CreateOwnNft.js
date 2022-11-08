@@ -4,9 +4,6 @@ import plus from "../../../assets/asse/plus.png";
 import search from "../../../assets/asse/search.png";
 import Mask from "../../../assets/Mask.png";
 
-
-
-
 export const CreateOwnNft = (props) => {
     const {setStartProject,collectionData,handleCollectionHandler,collectionId} = props
 
