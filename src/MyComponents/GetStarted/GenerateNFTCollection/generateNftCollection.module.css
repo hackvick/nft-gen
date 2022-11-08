@@ -57,7 +57,8 @@
 }
 .nftColBottom{
     display: flex;
-    width: 73.2% !important;
+    width: 72% !important;
+    overflow: scroll;
     /* background-color: #efefef; */
 }
 .nft_center{
@@ -316,11 +317,11 @@ span.uploadImage{
   flex-direction: column;
   align-items: center;
   }
-  .baby
-  {
-    height: 112px;
+  .baby{
+    width: 120px;
+        height: 112px;
   margin-left: 10px;
-  padding: 0px 28px 0px 28px;
+  /* padding: 0px 28px 0px 28px; */
   background-color: white;
   display: flex;
   justify-content: center;
@@ -372,11 +373,11 @@ span.uploadImage{
   }
   .preview {
     height: 17px;
-    width: 46px;
+    width: 100%;
     color: #000000;
     font-size: 12px;
     letter-spacing: 0;
-    line-height: 13px;
+    line-height: 16px;
     text-align: center;
   }
   .addLayer p{
@@ -386,6 +387,7 @@ span.uploadImage{
   .preview p {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    overflow: hidden;
   }
   .bitmap1 {
     height: 59.1px;
@@ -454,7 +456,11 @@ span.uploadImage{
   }
 
   .add_layer{
-    width: 26.8% !important;
+    width: 28% !important;
+}
+.layer_outer{
+    display: flex;
+    background: #efefef;
 }
 .active{
     border: 5px solid blue;
