@@ -24,9 +24,9 @@ const Navbar = (props) => {
 
                     </ul>
                 </div>
-                <div className="col-2" style={{ marginTop: "6px" }}>
+                {/* <div className="col-2" style={{ marginTop: "6px" }}>
                     <span > {ProjectName? <u style={{"textUnderlineOffset": "5px"}}> {ProjectName}</u>:"___________"}  </span>
-                </div>
+                </div> */}
                 <div className="col-3">
                     <div className={style.bottom}>
                         <p>NFT Generator</p>
