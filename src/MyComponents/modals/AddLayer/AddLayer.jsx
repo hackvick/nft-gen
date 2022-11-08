@@ -8,10 +8,11 @@ import Button from "react-bootstrap/Button";
 import UploadImage from "../UploadImage/UploadImage";
 import { toast } from "react-toastify";
 import { useNftProvider } from "../../context/NftProvider";
+import {ADD_LAYER} from "../../../Api/Api"
 
 const AddLayer = (props) => {
   const { setLayerId, collectionId, loader, setLoader } = useNftProvider();
-  const { getLayer, setShow, show ,setSelectedLayerName} = props;
+  const { getLayer, setShow, show ,handleStartProject} = props;
 
   const [layer, setLayer] = useState("");
   // const [upload, setUpload] = useState(false);
@@ -33,7 +34,7 @@ const AddLayer = (props) => {
 
     console.log(loader, "loader value add layer onsubmit side");
     await axios
-      .post("http://localhost:8000/api/user/addLayer", data, {
+      .post(ADD_LAYER, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -45,6 +46,8 @@ const AddLayer = (props) => {
         // setSelectedLayerName(res.data.data.layer.name)
         setShow(false);
         getLayer(collectionId,res.data.data.layer.name);
+        //handleStartProject is Used To reopen Start Project Modal or create Collections
+        handleStartProject()
         toast.success("Layer Added Successfully");
         formik.resetForm();
       })

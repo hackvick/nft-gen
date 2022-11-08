@@ -7,20 +7,27 @@ import plus from "../../../assets/asse/plus.png";
 import setting from "../../../assets/asse/settings.png";
 import { NftGenerator } from "../../modals/generateNft/generateNft";
 import EditData from "../../modals/EditData";
-// import cross from "../../../assets/cross.png";
-import axios from "axios";
-// import { toast } from "react-toastify";
 import { Rarity } from "../Rarity.js/Rarity";
 import { useNftProvider } from "../../context/NftProvider";
+import { API_BASE_URL } from "../../../Api/Api";
+// import { toast } from "react-toastify";
+// import axios from "axios";
+// import cross from "../../../assets/cross.png";
 
 export const GenerateNFT = (props) => {
-  const { setLayerData, layerData , selectedLayerName} = props
+  const {
+    layerData,
+    selectedLayerName,
+    getImageData,
+    setGetImageData,
+    getImages,
+  } = props;
   const { layerId, setLoader } = useNftProvider();
   const [show, setShow] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [edit, setEdit] = useState(false);
   const [uploadData, setUploadData] = useState([]);
-  const [getImageData, setGetImageData] = useState([]);
+  const [localUploadImages, setLocalUploadImages] = useState();
 
   useEffect(() => {
     // Fetching other layer images when LayerId changes
@@ -33,31 +40,39 @@ export const GenerateNFT = (props) => {
   }, [layerId]);
 
   const handleShow = () => setToggle(true);
+  
+  let imagess = []
+  const onImageChange = (event) => {
+    event.preventDefault();
+    console.log(event.target.name, "e target name upload image side");
+    console.log(event.target.name.files, "e target files upload image side");
+    // let formData = new FormData(event.target);
+    // console.log(formData,"formData upload onImageChange fn side");
+    let files = event.target.name.files;
+    console.log(files, "selectedImages onimagechange fn side");
 
-  const getImages = () => {
-    const token = localStorage.getItem("token");
-    setLoader(true);
-    axios
-      .get(`http://localhost:8000/api/user/getImages/${layerId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setGetImageData(res.data.data.Images);
-        console.log(res.data.data.Images, "Image get data");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoader(false);
-      });
+    if (event.target.name.files && event.target.name.files[0]) {
+      for (let i = 0; i < files.length; i++) {
+        console.log(files[i], "files loop side ");
+        imagess.push(URL.createObjectURL(files[i]))
+        console.log(URL.createObjectURL(files[i]),"file url created")
+
+        setLocalUploadImages(URL.createObjectURL(files[i]));
+      }
+    }
   };
 
   return (
     <div className={style.nftGenerate}>
+      {console.log(
+        localUploadImages,
+        "upload local generatenft collection side"
+      )}
+      {console.log(imagess,"imagess after push ")}
       {/* {console.log(layerData, "layerData genrate nft collection side ")} */}
-       {/* {console.log(selectedLayerName,"selectedLayerNAme generatenft side")} */}
+      {/* {console.log(selectedLayerName,"selectedLayerNAme generatenft side")} */}
       <UploadImage
+        onImageChange={onImageChange}
         setUploadData={setUploadData}
         getImages={getImages}
         setShow={setShow}
@@ -72,36 +87,45 @@ export const GenerateNFT = (props) => {
             <div className={style.displaySetting}>
               <ul className={style.categoryList}>
                 {getImageData.map((layerImg, i) => (
-                  <>
-                    {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
-                    <li key={i}>
-                      <div className={style.hidenft}>
-                        <span className={style.layerImages}>
-                          <img
-                            src={`http://localhost:8000${layerImg.imageUrl}`}
-                            alt="plus"
-                          />
-                        </span>
-                      </div>
-                    </li>
-                  </>
+                <>
+                  {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
+                  <li key={"i"}>
+                    <div className={style.hidenft}>
+                      <span className={style.layerImages}>
+                        <img
+                          src={`${API_BASE_URL}${layerImg.imageUrl}`}
+                          // src={localUploadImages}
+                          alt="plus"
+                        />
+                      </span>
+                    </div>
+                  </li>
+                </>
                 ))}
                 <li>
-                  <div
-                    className={style.hidenft}
-                    onClick={() => {
-                      setShow(true);
-                    }}
-                  >
-                    <label className={style.nftCursor}>
-                      <span className={style.uploadImage}>
-                        <img src={plus} alt="plus" />
-                        <span className={style.photoNft}>
-                          Upload Layer Image
-                        </span>
-                      </span>
-                    </label>
-                  </div>
+                  {/* upload Image div starts here that trigger upload modal */}
+                  {layerData.length !== 0 ? (
+                    <>
+                      <div
+                        className={style.hidenft}
+                        onClick={() => {
+                          setShow(true);
+                        }}
+                      >
+                        <label className={style.nftCursor}>
+                          <span className={style.uploadImage}>
+                            <img src={plus} alt="plus" />
+                            <span className={style.photoNft}>
+                              Upload Layer Image
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {/* upload Image div ends here that trigger upload modal */}
                 </li>
               </ul>
               <div className={style.LayerSettingBottom}>
@@ -127,17 +151,20 @@ export const GenerateNFT = (props) => {
                   </div>
                 </div>
                 <div className={style.layerBottomSection}>
+                  {/* show layer settings when getLayer Api Hit and Data retreive successfully */}
                   {layerData.length !== 0 ? (
                     <>
                       <div className={style.setting}>
                         <h2>Layer Settings</h2>
                       </div>
-                      {/* {layerData.map((data) => (
-                        <></>
-                      ))} */}
+
                       <div className={style.currentLayer}>
                         <label className={style.labelLayer}>Layer Name</label>
-                        <input className="form-control" type="text" value={selectedLayerName} />
+                        <input
+                          className="form-control"
+                          type="text"
+                          value={selectedLayerName}
+                        />
                       </div>
 
                       <div className={style.raritySetting}>
@@ -161,36 +188,6 @@ export const GenerateNFT = (props) => {
                     ""
                   )}
                   {/* rarity setting ends here */}
-
-                  {/* <div className={style.raritySettingSet}>
-                    <img src={backgroundImage} alt="background" />
-                    <div style={{ width: "310px", marginRight: "30px" }}>
-                      <Slider
-                        size="small"
-                        defaultValue={70}
-                        max={200}
-                        aria-label="Small"
-                        className="mx-3"
-                        // onChange={updateVal}
-                      />
-                    </div>
-                    <button className="btn btn-light">25.00</button>
-                  </div> */}
-                  {/* <hr className={style.bottomRight}></hr>
-                  <div className={style.raritySettingSet}>
-                    <img src={backgroundImage} alt="background" />
-                    <div style={{ width: "310px", marginRight: "30px" }}>
-                      <Slider
-                        size="small"
-                        defaultValue={70}
-                        max={200}
-                        aria-label="Small"
-                        className="mx-3"
-                        // onChange={updateVal}
-                      />
-                    </div>
-                    <button className="btn btn-light">25.00</button>
-                  </div> */}
                 </div>
               </div>
             </div>

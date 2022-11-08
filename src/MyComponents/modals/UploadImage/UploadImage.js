@@ -5,36 +5,45 @@ import axios from "axios";
 import style from "./UploadImage.module.css";
 import { toast } from "react-toastify";
 import { useNftProvider } from "../../context/NftProvider";
-
-const UploadImage = ({ show, setShow, getImages, setUploadData }) => {
+import { UPLOAD_IMAGES_WITH_LAYER_ID } from "../../../Api/Api";
+const UploadImage = ({ show, setShow, getImages, setUploadData,onImageChange }) => {
   const { layerId, setLoader } = useNftProvider();
-  // const [downloadUrl, setDownloadUrl] = useState();
   // const [file, setFile] = useState(null);
   // const [upload, setUpload] = useState(false);
   // const [download, setDownload] = useState(false);
   // const [addLayer, setAddLayer] = useState(false);
-
   const handleClose = () => setShow(false);
-  // const downloadFile = () => {
-  //   const link = document.createElement("a");
-  //   link.href = downloadUrl;
-  //   link.setAttribute("download", "file.zip"); //set download attribute to link
-  //   document.body.appendChild(link);
-  //   link.click(); // this will download file.zip
-  //   link.parentNode.removeChild(link);
-  // };
+
+
+  // const onImageChange = (event) => {
+  //   event.preventDefault();
+  //   console.log(event.target.name,"e target name upload image side")
+  //   console.log(event.target.name.files,"e target files upload image side")
+  //   // let formData = new FormData(event.target);
+  //   // console.log(formData,"formData upload onImageChange fn side");
+  //   let selectedImages = event.target.name.files
+    
+  //   if (event.target.name.files && event.target.name.files[0]) {
+  //     // eslint-disable-next-line array-callback-return
+  //     // selectedImages.map((UploadedImage)=>{
+  //       setLocalUploadImages(URL.createObjectURL(event.target.name.files[0]));
+
+  //     // })
+  //   }
+  //  }
+
 
   const uploadLayerImages = (e) => {
     const token = localStorage.getItem("token");
     e.preventDefault();
     let formData = new FormData(e.target);
+    console.log(formData,"formData uploadlayerimages fn side");
+
     setLoader(true);
     axios
-      .post(
-        `http://localhost:8000/api/user/uploadImages/${layerId}`,
-        formData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
+      .post(`${UPLOAD_IMAGES_WITH_LAYER_ID}${layerId}`, formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         setUploadData(res);
         handleClose();
@@ -64,11 +73,12 @@ const UploadImage = ({ show, setShow, getImages, setUploadData }) => {
           <form
             encType="multipart/form-data"
             onSubmit={(e) => {
+              // onImageChange(e)
               uploadLayerImages(e);
             }}
           >
             <Modal.Body className={style.uploadBody}>
-              <input type="file" name="name" />
+              <input  type="file" name="name" multiple="multiple" />
             </Modal.Body>
             <Modal.Footer className={style.uploadFooter}>
               <Button

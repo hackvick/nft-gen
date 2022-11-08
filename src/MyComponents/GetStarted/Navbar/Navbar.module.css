@@ -1,14 +1,18 @@
-/* .nftNavbar{
-    display: flex;
-} */
+.navbar{
+    padding: 10px 0px;
+}
 .leftSide{
     display: flex;
     justify-content: space-around;
+    margin: 0;
+    padding: 0;
 }
 .navbar .row{
-    width: 1440px;
+    width: 100%;
     height: 63px;
-    margin-top: 21px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
 }
 .liSection{
     color: #030815;
@@ -21,15 +25,18 @@
 }
 .leftSide li{
     font-weight: 400;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 17px;
-    font-family:'Poppins', sans-serif;
+    font-family: 'Poppins';
+}
+.leftSide li a{
+    color: #000;
 }
 .bottom p{
     text-align: center;
-    color: #eaeaea;
+    color: #C1C1C1;
     line-height: 17px;
-    margin-top: 10px;
     font-size: 16px;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
@@ -38,7 +45,7 @@
     text-align: right;
     margin-left: 6px;
     margin-right: 0px;
-    color: #eaeaea;
+    color: #C1C1C1;
     line-height: 16px;
     margin-top: 10px;
     font-weight: 400;
@@ -46,7 +53,10 @@
 }
 .rightSide {
     display: flex;
-    /* margin-top: 10px; */
+    justify-content: end;
+}
+.rightSide svg{
+    opacity: .56;
 }
 .profile{
     height: 40px;

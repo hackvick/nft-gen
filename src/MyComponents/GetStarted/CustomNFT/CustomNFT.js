@@ -7,7 +7,7 @@ import album from "../../../assets/asse/album.png";
 export const CustomNFT = () => {
   return (
     <>
-        <div className={`${style.sideBar}`}>
+        <div className={`${style.sideBar} col-1`}>
           <div className={style.sideButtom}>
               <div className={style.ActiveButton}>
                 <img src={template} alt="template" />

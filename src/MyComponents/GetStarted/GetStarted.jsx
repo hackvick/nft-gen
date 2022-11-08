@@ -11,11 +11,13 @@ import { CreateOwnNft } from "./CreateOwnNFT/CreateOwnNft";
 import { useNftProvider } from "../context/NftProvider";
 import { FooterNFTPreview } from "./FooterNFTPreview/FooterNFTPreview";
 import { Spinner } from "react-bootstrap";
+import {GET_IMAGES_WITH_LAYER_ID,GET_LAYERS_WITH_COLLECTION_ID} from "../../Api/Api"
 // import { useNavigate } from "react-router-dom";
 // import NftGenerator from '../modals/generateNft'
 
+
 export const GetStarted = () => {
-  const { collectionData,collectionId,setCollectionId,setLayerId,loader,setLoader,} = useNftProvider();
+  const { collectionData,collectionId,setCollectionId,setLayerId,loader,setLoader,layerId} = useNftProvider();
   const token = localStorage.getItem("token");
   const [uploadImage, setUploadImage] = useState(false);
   const [startProject, setStartProject] = useState(false);
@@ -27,11 +29,13 @@ export const GetStarted = () => {
   const [layerData, setLayerData] = useState([]);
   const [projectName,setProjectName] = useState("")
   const [selectedLayerName,setSelectedLayerName] = useState("") 
+  const [getImageData, setGetImageData] = useState([]);
+
   const getLayer = (collection_Id,layername) => {
     console.log(collection_Id, "get layer function side");
     // setLoader(true)
     axios
-      .get(`http://localhost:8000/api/user/getLayers/${collection_Id}`, {
+      .get(`${GET_LAYERS_WITH_COLLECTION_ID}${collection_Id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -48,12 +52,33 @@ export const GetStarted = () => {
       });
   };
 
+  const getImages = () => {
+    const token = localStorage.getItem("token");
+    setLoader(true);
+    axios
+      .get(`${GET_IMAGES_WITH_LAYER_ID}${layerId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setGetImageData(res.data.data.Images);
+        console.log(res.data.data.Images, "Image get data get img fn side");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+  };
+
   const handleCollectionHandler = (collection_Id) => {
     console.log(collection_Id,"collectionid handle collection create own nft")
     setCollectionId(collection_Id);
-    getLayer(collectionId);
+    getLayer(collection_Id);
+    // getImages()
     //get images bhi aygi ispr click krty hi
-    setLayerId("");
+    setLayerId("")
+      // setLayerId(layed)
   };
 
 useMemo(() => {
@@ -98,9 +123,9 @@ useMemo(() => {
             collectionId={collectionId}
           />
 
-          <div className={style.rightBar}>
-            <GenerateNFT selectedLayerName = {selectedLayerName} setLayerData={setLayerData} layerData = {layerData}/>
-            <FooterNFTPreview setSelectedLayerName = {setSelectedLayerName} layerData={layerData} getLayer={getLayer} />
+          <div className={`col-9 ${style.rightBar}`}>
+            <GenerateNFT getImages = {getImages} getImageData = {getImageData} setGetImageData = {setGetImageData} selectedLayerName = {selectedLayerName} setLayerData={setLayerData} layerData = {layerData}/>
+            <FooterNFTPreview getImageData = {getImageData} setSelectedLayerName = {setSelectedLayerName} layerData={layerData} getLayer={getLayer} />
           </div>
         </div>
       </div>

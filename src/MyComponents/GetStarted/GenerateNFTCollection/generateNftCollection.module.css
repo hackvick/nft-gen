@@ -1,17 +1,6 @@
-/* Srcoll Css */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 10px;
-    
-  }
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background: #c2c9d2;
-  }
-
+.upload_layer {
+    width: 74% !important;
+}
 .nftGenerate {
     font-size: 15px; 
 }
@@ -38,26 +27,29 @@
     width: 30px;
 }
 .raritySettingSet Button{
-    border: 1px solid gray;
+    border: 1px solid #DDDDDD;
     height: 33px;
     width: 44px;
     font-size: 12px;
+    font-weight: 500;
     padding: 6px;
     background-color: white;
 }
 .generateBtn{
     color: #fff;
-    border-radius: 0px;
+    border-radius: 5px;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
+    background: #2F66EE;
     text-decoration: none;
     transition: all 0.1s;
 }
 .displaySetting{
     display: flex;
-    height: 100vh;
-    width: 900px;
+    height:100vh;
+    width: 100%;
 }
+
 .layerImages img{
     height: 116px;
     width: 177px;
@@ -71,7 +63,7 @@
 
 .categoryList{
     background-color: #fafafa;
-    width: 71%;
+    width: 74%;
     height: 86%;
     padding: 91px 0px 20px 26px;
     overflow: auto;
@@ -126,7 +118,7 @@ span.uploadImage{
 }
 .LayerSettingBottom{
     right: 0px;
-    width: 278px;
+    width: 26%;
     height: 100%;
     background: #efefef;
     display: block;
@@ -141,7 +133,7 @@ span.uploadImage{
     padding: 0px ;
     font-size: 20px !important;
     line-height: 22px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
 }
@@ -172,13 +164,14 @@ span.uploadImage{
 }
 .resetBtn{
     margin-right: 9px;
+    text-decoration: underline;
     color: red !important;
 }
 .nftFooter{
     border: 1px solid #ddd;
     margin: 0px;
     position: absolute;
-    width: 104.3%;
+    width: 105%;
     bottom: 0px;
 }
 .previewImages{
@@ -220,6 +213,9 @@ span.uploadImage{
     padding: 5px;
     position: relative;
 } */
+.nftColBottom{
+    width: 70.6% !important;
+}
 .nftFooter ul li button span{
     font-size: 12px;
     color: #707070;
@@ -451,5 +447,7 @@ span.uploadImage{
 .active{
     border: 5px solid blue;
 }
+
+
 
 

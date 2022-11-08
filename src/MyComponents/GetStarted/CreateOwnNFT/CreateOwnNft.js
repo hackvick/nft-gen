@@ -13,7 +13,7 @@ export const CreateOwnNft = (props) => {
   return (
     <>
      {/* {console.log(style.active,"style active create own nft side")} */}
-      <div className={`${style.bottomBar}`}>
+      <div className={`${style.bottomBar} col-2`}>
         <div className={style.inputContainer}>
           <img src={search} alt="search" className="mx-3" />
           <input

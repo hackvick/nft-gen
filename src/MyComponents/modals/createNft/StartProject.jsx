@@ -6,13 +6,14 @@ import axios from "axios";
 import AddLayer from "../AddLayer/AddLayer";
 import { useNftProvider } from "../../context/NftProvider";
 import { toast } from "react-toastify";
+import {CREATE_COLLECTION} from "../../../Api/Api"
 // import Button from 'react-bootstrap/Button';
 // import { useFormik } from "formik";
 // import * as Yup from "yup";
 // import { useNavigate } from 'react-router-dom';
 
 const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
-  const { setCollectionId, setLoader } = useNftProvider();
+  const { setCollectionId, setLoader, setLayerId } = useNftProvider();
 
   const [collectionCreated, setCollectionCreated] = useState(false);
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
   const [width, setWidth] = useState("");
 
   const handleClose = () => setShow(false);
-
+  const handleStartProject = () => setCollectionCreated(false);
   const data = { name, height, width };
 
   const handleSize = (e) => {
@@ -32,7 +33,7 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
     const token = localStorage.getItem("token");
     setLoader(true);
     axios
-      .post("http://localhost:8000/api/user/createCollection", data, {
+      .post(CREATE_COLLECTION, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -41,7 +42,12 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
           "collection id Create Collection side  response"
         );
         setCollectionId(res.data.data.collection._id);
+        //this means that collection is created and now open add layer modal
         setCollectionCreated(true);
+        //stop  get layer images api after new project for this set layerId blank
+        setLayerId("");
+        //stop  get layers api after new project for this setLayerData blank
+        setLayerData([]);
       })
       .catch((err) => {
         console.log(err, "Create Collection fn side");
@@ -109,7 +115,12 @@ const StartProject = ({ show, setShow, getLayer, setLayerData, layerData }) => {
         </Modal>
       ) : (
         <>
-          <AddLayer setShow={setShow} show={show} getLayer={getLayer} />
+          <AddLayer
+            handleStartProject={handleStartProject}
+            setShow={setShow}
+            show={show}
+            getLayer={getLayer}
+          />
         </>
       )}
     </div>

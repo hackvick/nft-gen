@@ -1,25 +1,25 @@
-import React, { useState } from "react";
+import React, { useState ,useMemo} from "react";
 import style2 from "../GenerateNFTCollection/generateNftCollection.module.css";
 import backgroundImage from "../../../assets/0background.png";
 import plus from "../../../assets/asse/plus.png";
 import cross from "../../../assets/cross.png";
 import AddLayer from "../../modals/AddLayer/AddLayer";
 import { useNftProvider } from "../../context/NftProvider";
+import {API_BASE_URL} from "../../../Api/Api"
 
 export const FooterNFTPreview = (props) => {
-  const { layerData, getLayer } = props;
+  const { layerData, getLayer , setSelectedLayerName,getImageData} = props;
   const { layerId, setLayerId } = useNftProvider();
-
   const [layer, setLayer] = useState(false);
 
-  // let layerData = [];
-  // let layerId;
-  // let setLayerId = () => {};
-  // let setLayer = () => {};
+  console.log(layerData,"layerData footer nft side ")
+  console.log(getImageData,"getImageData footer nft side ")
+
 
   return (
     <>
-      <AddLayer getLayer={getLayer} show={layer} setShow={setLayer} />
+       {/* {console.log(currentLayerImg,"currentLayerimg")} */}
+      <AddLayer  getLayer={getLayer} show={layer} setShow={setLayer} />
       <div className={style2.nftGenerate}>
         <div className="container p-0 h-100">
           <div className={style2.nftFooter}>
@@ -60,6 +60,7 @@ export const FooterNFTPreview = (props) => {
               </div>
 
                     {layerData.map((layerData) => (
+                      <>          
                       <div
                         className={`${style2.baby} ${
                           layerData._id === layerId ? style2.active : ""
@@ -69,18 +70,26 @@ export const FooterNFTPreview = (props) => {
                           setLayerId(layerData._id);
                         }}
                       >
+                            {getImageData.map((layerimg)=>(<>
+                              
+                            </>))}
+                            {console.log(getImageData,"get img data footer side")}
                         <div className={style2.rectangle}>
                           <div className={style2.shape}>
                             <img src={cross} alt="" />
                           </div>
                           <div className={style2.bitmap3}>
-                            <img src={backgroundImage} alt="" />
+                          {/* <img src={""} alt="" /> */}
+                          {getImageData.length!==0?<img src={`${API_BASE_URL}${getImageData[0].imageUrl}`} alt="" />:""}
+                          {/* {getImageData.length!==0?<img src={`http://localhost:8000${getImageData[0].imageUrl}`} alt="" />:""} */}
                           </div>
                         </div>
                         <div className={style2.preview}>
                           <p>{layerData.name}</p>
                         </div>
                       </div>
+                      </>
+
                     ))}
 
                   </div>
