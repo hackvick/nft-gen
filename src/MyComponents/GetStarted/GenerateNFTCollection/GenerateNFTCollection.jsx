@@ -82,52 +82,55 @@ export const GenerateNFT = (props) => {
       <EditData show={edit} setShow={setEdit} />
 
       <div className="container p-0 h-100">
-        <div className="row p-0">
+        <div className="row p-0 m-0">
           <div className={style.bottom}>
             <div className={style.displaySetting}>
-              <ul className={style.categoryList}>
-                {getImageData.map((layerImg, i) => (
-                <>
-                  {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
-                  <li key={"i"}>
-                    <div className={style.hidenft}>
-                      <span className={style.layerImages}>
-                        <img
-                          src={`${API_BASE_URL}${layerImg.imageUrl}`}
-                          // src={localUploadImages}
-                          alt="plus"
-                        />
-                      </span>
-                    </div>
-                  </li>
-                </>
-                ))}
-                <li>
-                  {/* upload Image div starts here that trigger upload modal */}
-                  {layerData.length !== 0 ? (
-                    <>
-                      <div
-                        className={style.hidenft}
-                        onClick={() => {
-                          setShow(true);
-                        }}
-                      >
-                        <label className={style.nftCursor}>
-                          <span className={style.uploadImage}>
-                            <img src={plus} alt="plus" />
-                            <span className={style.photoNft}>
-                              Upload Layer Image
-                            </span>
-                          </span>
-                        </label>
+              <div className={style.nft_center}>
+                <ul className={style.categoryList}>
+                  {getImageData.map((layerImg, i) => (
+                  <>
+                    {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
+                    <li key={"i"}>
+                      <div className={style.hidenft}>
+                        <span className={style.layerImages}>
+                          <img
+                            src={`${API_BASE_URL}${layerImg.imageUrl}`}
+                            // src={localUploadImages}
+                            alt="plus"
+                          />
+                        </span>
                       </div>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                  {/* upload Image div ends here that trigger upload modal */}
-                </li>
-              </ul>
+                    </li>
+                  </>
+                  ))}
+                  <li>
+                    {/* upload Image div starts here that trigger upload modal */}
+                    {layerData.length !== 0 ? (
+                      <>
+                        <div
+                          className={style.hidenft}
+                          onClick={() => {
+                            setShow(true);
+                          }}
+                        >
+                          <label className={style.nftCursor}>
+                            <span className={style.uploadImage}>
+                              <img src={plus} alt="plus" />
+                              <span className={style.photoNft}>
+                                Upload Layer Image
+                              </span>
+                            </span>
+                          </label>
+                        </div>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {/* upload Image div ends here that trigger upload modal */}
+                  </li>
+                </ul>
+                
+              </div>        
               <div className={style.LayerSettingBottom}>
                 <div className={style.layerSetting}>
                   <div className={style.saveDraft}>

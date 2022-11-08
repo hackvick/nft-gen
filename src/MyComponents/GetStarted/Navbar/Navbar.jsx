@@ -8,7 +8,7 @@ const Navbar = (props) => {
     const {ProjectName} = props
 
     return (
-        <div style={{ marginTop: "14px" }} className={style.navbar}>
+        <div style={{  }} className={style.navbar}>
          {console.log(ProjectName,"project name navbar side ")}
             <div className={`row ${style.row}`}>
                 <div className="col-3">
@@ -32,7 +32,7 @@ const Navbar = (props) => {
                         <p>NFT Generator</p>
                     </div>
                 </div>
-                <div className="col-3" style={{ marginLeft: "41px" }}>
+                <div className="col-3" style={{  }}>
                     <div className={style.rightSide}>
                         <div className={style.profile}></div>
                         <p>admin@gmail.com</p>
