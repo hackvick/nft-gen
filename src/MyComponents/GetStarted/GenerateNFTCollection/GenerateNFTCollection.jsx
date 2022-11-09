@@ -39,9 +39,9 @@ export const GenerateNFT = (props) => {
     //eslint-disable-next-line
   }, [layerId]);
 
-  const handleShow = () => setToggle(true);
+  const handleShow =  () => setToggle(true);
   
-  let imagess = []
+  let imagess = []  
   const onImageChange = (event) => {
     event.preventDefault();
     console.log(event.target.name, "e target name upload image side");

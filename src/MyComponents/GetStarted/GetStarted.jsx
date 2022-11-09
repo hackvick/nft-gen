@@ -26,6 +26,7 @@ export const GetStarted = () => {
   // const [toggle, setToggle] = useState("1");
   // const [open, setOpen] = useState(false)
   // const navigate = useNavigate();
+  
   const [layerData, setLayerData] = useState([]);
   const [projectName,setProjectName] = useState("")
   const [selectedLayerName,setSelectedLayerName] = useState("") 
