@@ -64,6 +64,7 @@ export const FooterNFTPreview = (props) => {
                             key={layerData._id}
                             onClick={() => {
                               setLayerId(layerData._id);
+                              setSelectedLayerName(layerData.name)
                             }}
                           >
                             {getImageData.map((layerimg) => (
