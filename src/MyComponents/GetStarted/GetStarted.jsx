@@ -66,22 +66,24 @@ export const GetStarted = () => {
         console.log(res.data.data.Images, "Image get data get img fn side");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err,"err get images fn side");
       })
       .finally(() => {
         setLoader(false);
       });
   };
 
-  const handleCollectionHandler = (collection_Id,imagePreview) => {
+  const handleCollectionHandler = (collection_Id,imagePreview,layerIdFromCollections) => {
     console.log(collection_Id,"collectionid handle collection create own nft")
+    console.log(layerIdFromCollections,"layerIdCollections")
     setCollectionId(collection_Id);
     getLayer(collection_Id);
     setImagePreview(imagePreview)
-    // getImages()
     //get images bhi aygi ispr click krty hi
-    setLayerId("")
-      // setLayerId(layed)
+    // setLayerId("")
+      setLayerId(layerIdFromCollections)
+      // getImages()
+
   };
 
 useMemo(() => {
