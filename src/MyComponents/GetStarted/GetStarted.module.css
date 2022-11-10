@@ -228,10 +228,10 @@ margin-top: 5px !important;
   overflow-x: hidden;
   padding: 0 5px 0 0;
   margin: 20px 0 10px;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; */
 }
 ul .leftSection {
   list-style: none;
@@ -249,7 +249,7 @@ ul .leftSection {
   padding: 20px 0px 0 20px;
 }
 .leftSection li {
-  /* float: left; */
+  float: left;
     text-align: center;
     width: 50%;
     padding: 10px 10px;
