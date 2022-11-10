@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 // import * as Yup from "yup";
 import Logo from "../../assets/Logo.png";
 import ForgetPassword from "../Form/ForgetPassword/ForgetPassword";
-import SignupForm from '../SignupForm/SignupForm'
+import SignupForm from '../OnBoarding/SignupForm/SignupForm'
 import { ToastContainer, toast } from 'react-toastify';
 import VerifyForm from "../Form/ForgetPassword/VerifyForm";
 import { NavLink } from "react-bootstrap";
@@ -84,13 +84,13 @@ const Login = (props) => {
                             <>
                               {!verify ?
                                 <>
-                                  <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
-                                  <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Create an Account</div>
+                                  <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} style={{cursor:"pointer"}} onClick={() => setForget(false)} >Login</div>
+                                  <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} style={{cursor:"pointer"}} onClick={toggleContent}>Create an Account</div>
                                 </>
                                 :
                                 <>
-                                  <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
-                                  <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Resend Code</div>
+                                  <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} style={{cursor:"pointer"}} onClick={() => setForget(false)} >Login</div>
+                                  <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} style={{cursor:"pointer"}} onClick={toggleContent}>Resend Code</div>
                                 </>
                               }
                             </>

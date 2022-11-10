@@ -61,13 +61,14 @@ export const NftGenerator = (props) => {
 
   const generateNFT = async () => {
     const token = localStorage.getItem("token");
+    console.log(data,"data that pass in api gen nft side")
     setLoader(true);
     await axios
       .post(GENERATE_NFT, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res,"res");
+        console.log(res,"res nft generate side");
         setGeneratedNftUrl(res.data.data.nfts);
         handleDownload(res.data.data.nfts);
       })
@@ -91,8 +92,11 @@ export const NftGenerator = (props) => {
           generatedNftUrl,
           "generatedNft Url generate nft modal side "
         )}
+    {console.log(data,"data that pass in api gen nft side")}
+        
         {console.log(collectionId, "collection id generate nft modal side")}
-
+        {console.log(numberOfEditions, "numberOfEditions nft modal side")}
+        
         <Modal show={toggle} onHide={handleClose} className="nftGenerateModal">
           <Modal.Header closeButton className={style.generateHeader}>
             <h5>Generate NFT</h5>

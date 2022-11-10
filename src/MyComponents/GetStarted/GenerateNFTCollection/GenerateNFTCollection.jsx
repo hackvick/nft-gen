@@ -27,7 +27,7 @@ export const GenerateNFT = (props) => {
   const [toggle, setToggle] = useState(false);
   const [edit, setEdit] = useState(false);
   const [uploadData, setUploadData] = useState([]);
-  const [localUploadImages, setLocalUploadImages] = useState();
+  // const [localUploadImages, setLocalUploadImages] = useState();
 
   useEffect(() => {
     // Fetching other layer images when LayerId changes
@@ -41,9 +41,9 @@ export const GenerateNFT = (props) => {
 
   const handleShow =  () => setToggle(true);
   
-  let imagess = []  
-  const onImageChange = (event) => {
+  const onImageChange = async (event) => {
     event.preventDefault();
+    let imagesURL=[];
     console.log(event.target.name, "e target name upload image side");
     console.log(event.target.name.files, "e target files upload image side");
     // let formData = new FormData(event.target);
@@ -52,23 +52,28 @@ export const GenerateNFT = (props) => {
     console.log(files, "selectedImages onimagechange fn side");
 
     if (event.target.name.files && event.target.name.files[0]) {
+
       for (let i = 0; i < files.length; i++) {
-        console.log(files[i], "files loop side ");
-        imagess.push(URL.createObjectURL(files[i]))
+        console.log(files[i].name, "files loop side ");
+        imagesURL.push({localImageUrl:URL.createObjectURL(files[i])});
         console.log(URL.createObjectURL(files[i]),"file url created")
 
-        setLocalUploadImages(URL.createObjectURL(files[i]));
+        // setLocalUploadImages(imagesURL)
+        // setGetImageData(imagesURL)
+        
       }
+     console.log(imagesURL,"imagess array under fn blank down side")
+
     }
   };
 
+
   return (
     <div className={style.nftGenerate}>
-      {console.log(
+      {/* {console.log(
         localUploadImages,
         "upload local generatenft collection side"
-      )}
-      {console.log(imagess,"imagess after push ")}
+      )} */}
       {/* {console.log(layerData, "layerData genrate nft collection side ")} */}
       {/* {console.log(selectedLayerName,"selectedLayerNAme generatenft side")} */}
       <UploadImage

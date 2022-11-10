@@ -16,7 +16,7 @@ const Navbar = (props) => {
     const {ProjectName} = props
 
     return (
-        <div style={{  }} className={style.navbar}>
+        <div  className={style.navbar}>
          {console.log(ProjectName,"project name navbar side ")}
             <div className={`row ${style.row}`}>
                 <div className="col-3">

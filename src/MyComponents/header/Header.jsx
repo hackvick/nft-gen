@@ -6,17 +6,27 @@ import OnBoard from "../OnBoarding/OnBoard";
 import ForgetHandle from "../OnBoarding/ForgetHandle";
 import { useOnboard } from "../../context/GlobalContext";
 const Navbar = () => {
+  
   // const [show, setShow] = useState(false);
-  const [open, setOpen] = useState(true);
-  const [showSign,setShowSign] = useState(false)
-  const [showLogin,setShowLogin] = useState(false)
-  const {show,setShow,setSign} = useOnboard()
+const token = localStorage.getItem("token");
+if(!token){
+  var visibility = "block !important"
+}else{
+  visibility = "none !important"
+}
 
+  const {show,setShow,setSign,open, setOpen,showSign,setShowSign,showLogin,setShowLogin} = useOnboard()
+
+  
+  console.log(visibility,"visibilityyyyyy");
+  // const token = localStorage.getItem("token");
+  // console.log(token,"toooooke");
 
   const handleShow = (e) => {
     e.preventDefault();
-    setShowLogin(true)
+    // setShowLogin(true)
     setShowSign(false)
+    setSign(false)
     setShow(true);
     setOpen(false);
   };
@@ -26,7 +36,7 @@ const Navbar = () => {
     console.log(open);
     setSign(true)
     setShowSign(true)
-    setShowLogin(false)
+    // setShowLogin(false)
     setShow(true);
     setOpen(true);
   };
@@ -80,8 +90,8 @@ const Navbar = () => {
                 </a>
               </li>
             </ul>
-            <form className={`d-flex  ${style.form}`} role="search">
-              <div className="loginButton">
+            <form className={`d-flex  ${style.form}`} style={{display:{visibility}}}  role="search">
+              <div className={`loginButton `} >
                 <button
                   className={`btn  mx-4 ${style.login}`}
                   type="button"
@@ -102,7 +112,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <OnBoard show={show} showSign={showSign} showLogin={showLogin} onClose={handleClose} open={open} setOpen={setOpen}/>
+      <OnBoard show={show} showSign={showSign} onClose={handleClose} open={open} setOpen={setOpen}/>
       {/* <ForgetHandle open={open}/> */}
       {/* <Login show={show} onClose={handleClose} open={open} setOpen={setOpen}/> */}
     </div>

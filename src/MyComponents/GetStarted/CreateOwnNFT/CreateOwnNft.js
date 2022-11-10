@@ -31,7 +31,7 @@ export const CreateOwnNft = (props) => {
             <ul className={`${style.leftSection} `}>
               <div onClick={() => setStartProject(true)}>
                 <li>
-                  <span className={style.customLayer}>
+                    <span className={style.customLayer}>
                     <img src={plus} className="" alt="design" />
                     <span className={style.addPhoto}>Create your Own NFT</span>
                   </span>

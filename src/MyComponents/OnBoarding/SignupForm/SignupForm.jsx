@@ -4,14 +4,12 @@ import style from "./SignupForm.module.css";
 
 import * as Yup from "yup";
 import axios from 'axios';
-import { SIGN_UP_API } from '../../Api/Api'
-import { toastContainer, toast, ToastContainer } from 'react-toastify'
-import Login from '../Login/login';
-import { LoginNew } from "../login2.0/LoginNew";
-import { useOnboard } from "../../context/GlobalContext";
+import { SIGN_UP_API } from '../../../Api/Api'
+import {toast} from 'react-toastify'
+import { useOnboard } from "../../../context/GlobalContext";
 
 const SignForm = () => {
-  const {forget,setForget,sign,setSign,show,setShow} = useOnboard()
+  const {forget,setForget,sign,setSign,setShowSign,show,setShow} = useOnboard()
 
   const [toggle,setToggle] = useState(false)
   const initialValues = {
@@ -34,8 +32,10 @@ const SignForm = () => {
       .then((res) => {
         formik.resetForm()
         console.log(res);
+        console.log("yhi hoo");
         setSign(false)
-    setShow(true)
+        setShowSign(false)
+        setShow(true)
         // setToggle(true)
         toast.success("SignUp Successfully");
 

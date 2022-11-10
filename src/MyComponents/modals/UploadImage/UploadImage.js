@@ -14,25 +14,6 @@ const UploadImage = ({ show, setShow, getImages, setUploadData,onImageChange }) 
   // const [addLayer, setAddLayer] = useState(false);
   const handleClose = () => setShow(false);
 
-
-  // const onImageChange = (event) => {
-  //   event.preventDefault();
-  //   console.log(event.target.name,"e target name upload image side")
-  //   console.log(event.target.name.files,"e target files upload image side")
-  //   // let formData = new FormData(event.target);
-  //   // console.log(formData,"formData upload onImageChange fn side");
-  //   let selectedImages = event.target.name.files
-    
-  //   if (event.target.name.files && event.target.name.files[0]) {
-  //     // eslint-disable-next-line array-callback-return
-  //     // selectedImages.map((UploadedImage)=>{
-  //       setLocalUploadImages(URL.createObjectURL(event.target.name.files[0]));
-
-  //     // })
-  //   }
-  //  }
-
-
   const uploadLayerImages = (e) => {
     const token = localStorage.getItem("token");
     e.preventDefault();

@@ -5,8 +5,10 @@ export const OnBoard = ({ children }) => {
   const [forget, setForget] = useState(false);
   const [sign,setSign]=useState(false);
   const [show,setShow] = useState(false);
-
-  const value = { forget, setForget,sign,setSign,show,setShow };
+  const [open, setOpen] = useState(true);
+  const [showSign,setShowSign] = useState(false)
+  const [showLogin,setShowLogin] = useState(false)
+  const value = { forget, setForget,sign,setSign,show,setShow,open, setOpen,showSign,setShowSign,showLogin,setShowLogin };
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

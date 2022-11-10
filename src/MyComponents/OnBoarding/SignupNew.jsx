@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../Login/Login.module.css";
-import SignupForm from "../SignupForm/SignupForm";
+import SignupForm from "./SignupForm/SignupForm";
 import Logo from "../../assets/Logo.png";
 
 const SignupNew = () => {
