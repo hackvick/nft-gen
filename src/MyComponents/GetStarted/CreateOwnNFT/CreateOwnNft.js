@@ -3,7 +3,7 @@ import style from "../GetStarted.module.css";
 import plus from "../../../assets/asse/plus.png";
 import search from "../../../assets/asse/search.png";
 import Mask from "../../../assets/Mask.png";
-
+import { API_BASE_URL } from "../../../Api/Api";
 export const CreateOwnNft = (props) => {
   const {
     setStartProject,
@@ -42,11 +42,12 @@ export const CreateOwnNft = (props) => {
                   <li
                     key={index}
                     // className={content._id === collectionId ? style.active : ''}
-                    onClick={() => handleCollectionHandler(content._id)}
+                    onClick={() => handleCollectionHandler(content._id,content.preview)}
                   >
                     {content._id === collectionId ? (
                       <>
                         {console.log(content._id, "content id createown side")}
+                        {console.log(`${content.preview}`,"previewwwwwwwwww")}
                         {console.log(
                           collectionId,
                           "collectionId createOwn Side"
@@ -57,13 +58,21 @@ export const CreateOwnNft = (props) => {
                     )}
                     <span className={style.imageWrapper}>
                       <a href="#">
+                      {content.preview!==null?
+                      
                         <img
+                          src={`${API_BASE_URL}/${content.preview}`}
+                          className={`${style.mainImg} ${
+                            content._id === collectionId ? style.active : ""
+                          }`}
+                          alt="content"
+                        />:<img
                           src={Mask}
                           className={`${style.mainImg} ${
                             content._id === collectionId ? style.active : ""
                           }`}
                           alt="content"
-                        />
+                        />}
                       </a>
                     </span>
                   </li>

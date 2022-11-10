@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import style from "../Login/Login.module.css";
-import SignupForm from "../SignupForm/SignupForm";
+import SignupForm from "../OnBoarding/SignupForm/SignupForm";
 import Logo from "../../assets/Logo.png";
 import { NavLink } from "react-bootstrap";
 import ForgetPassword from "../Form/ForgetPassword/ForgetPassword";
-import SignupNew from "../Signup2.0/SignupNew";
+import SignupNew from "../OnBoarding/SignupNew";
 import axios from "axios";
 import { LOGIN_API } from "../../Api/Api";
 import { ToastContainer, toast } from "react-toastify";
@@ -41,6 +41,7 @@ export const LoginNew = (props) => {
           localStorage.setItem("token", res.data.data.accessToken);
           // navigate("/");
           // onClose();
+          setOpen(false)
         })
         .catch((err) => {
           console.log(err);
