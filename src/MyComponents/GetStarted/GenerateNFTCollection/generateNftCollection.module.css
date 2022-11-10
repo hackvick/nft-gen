@@ -467,11 +467,15 @@ span.uploadImage{
     border: 5px solid blue;
 }
 .hidenft>img{
-    width: 30px;
+    display: none;
+    width: 40px;
     position: absolute;
     left: 9%;
-    top: -6px;
+    top: -9px;
+}
 
+.hidenft:hover>img{
+    display: block;
 }
 
 
