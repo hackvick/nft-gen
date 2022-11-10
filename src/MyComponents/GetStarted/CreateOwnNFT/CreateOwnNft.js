@@ -3,6 +3,8 @@ import style from "../GetStarted.module.css";
 import plus from "../../../assets/asse/plus.png";
 import search from "../../../assets/asse/search.png";
 import Mask from "../../../assets/Mask.png";
+import BlankImg from "../../../assets/blank.jpg";
+
 import { API_BASE_URL } from "../../../Api/Api";
 export const CreateOwnNft = (props) => {
   const {
@@ -61,13 +63,13 @@ export const CreateOwnNft = (props) => {
                       {content.preview!==null?
                       
                         <img
-                          src={`${API_BASE_URL}/${content.preview}`}
+                          src={`${API_BASE_URL}${content.preview}`}
                           className={`${style.mainImg} ${
                             content._id === collectionId ? style.active : ""
                           }`}
                           alt="content"
                         />:<img
-                          src={Mask}
+                          src={BlankImg}
                           className={`${style.mainImg} ${
                             content._id === collectionId ? style.active : ""
                           }`}

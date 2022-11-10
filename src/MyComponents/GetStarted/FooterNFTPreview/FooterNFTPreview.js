@@ -31,7 +31,7 @@ export const FooterNFTPreview = (props) => {
                         <div className={style2.rectangle1}>
                           <div className={style2.bitmap3}>
                           {collectionData.preview!== null? 
-                            <img src={`${API_BASE_URL}/${imagePreview}`} alt="" />:""}
+                            <img src={`${API_BASE_URL}${imagePreview}`} alt="" />:""}
                           </div>
                         </div>
                         <div className={style2.preview}>
