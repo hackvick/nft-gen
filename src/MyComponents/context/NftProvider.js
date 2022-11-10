@@ -9,6 +9,7 @@ export const NftProvider = ({ children }) => {
   const [collectionId, setCollectionId] = useState("");
   const [collectionData, setCollectionData] = useState([])
   const [loader, setLoader] = useState(false) 
+  const [login,setlogin] = useState(false) 
 
   useEffect(() => {
     getCollections();
@@ -45,7 +46,7 @@ export const NftProvider = ({ children }) => {
         loader:loader
       }}
     >
-      {/* {console.log(collectionData, "collectionData context side")} */}
+      {console.log(collectionData, "collectionData context side")}
       {console.log(collectionId, "collectionId context side")}
       {console.log(layerId, "layerId context side")}
 

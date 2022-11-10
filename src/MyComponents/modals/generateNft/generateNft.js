@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { saveAs } from "file-saver";
 import JSZipUtils from "jszip-utils";
-import {API_BASE_URL,GENERATE_NFT} from "../../../Api/Api"
+import { API_BASE_URL, GENERATE_NFT } from "../../../Api/Api";
 
 export const NftGenerator = (props) => {
   const { setToggle, toggle } = props;
@@ -36,10 +36,10 @@ export const NftGenerator = (props) => {
       // console.log(photo, "photos handle download side ");
 
       const fileName = photo
-      .replace(/[\/]/gi, "")
-      .replace("Images", "")
-      .replace("images", "")
-      .replace("build", "")
+        .replace(/[\/]/gi, "")
+        .replace("Images", "")
+        .replace("images", "")
+        .replace("build", "");
 
       console.log(fileName, "filename handle download side");
       JSZipUtils.getBinaryContent(
@@ -61,23 +61,28 @@ export const NftGenerator = (props) => {
 
   const generateNFT = async () => {
     const token = localStorage.getItem("token");
-    console.log(data,"data that pass in api gen nft side")
+    console.log(data, "data that pass in api gen nft side");
     setLoader(true);
     await axios
       .post(GENERATE_NFT, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res,"res nft generate side");
+        console.log(res, "res nft generate side");
+
         setGeneratedNftUrl(res.data.data.nfts);
         handleDownload(res.data.data.nfts);
       })
       .catch((err) => {
         console.log(err, "err generate nft modal side ");
-        toast.error(
-          err.response.data ? err.response.data.message : err,
-          "check console"
-        );
+        if (err.message === "Network Error") {
+          toast.error(" Network Error Please try Again! ");
+        } else {
+          toast.error(
+            err.response.data ? err.response.data.message : err,
+            "check console"
+          );
+        }
       })
       .finally(() => {
         setLoader(false);
@@ -92,11 +97,11 @@ export const NftGenerator = (props) => {
           generatedNftUrl,
           "generatedNft Url generate nft modal side "
         )}
-    {console.log(data,"data that pass in api gen nft side")}
-        
+        {console.log(data, "data that pass in api gen nft side")}
+
         {console.log(collectionId, "collection id generate nft modal side")}
         {console.log(numberOfEditions, "numberOfEditions nft modal side")}
-        
+
         <Modal show={toggle} onHide={handleClose} className="nftGenerateModal">
           <Modal.Header closeButton className={style.generateHeader}>
             <h5>Generate NFT</h5>

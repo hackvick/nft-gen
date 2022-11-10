@@ -41,31 +41,54 @@ export const GenerateNFT = (props) => {
 
   const handleShow =  () => setToggle(true);
   
-  const onImageChange = async (event) => {
-    event.preventDefault();
-    let imagesURL=[];
-    console.log(event.target.name, "e target name upload image side");
-    console.log(event.target.name.files, "e target files upload image side");
-    // let formData = new FormData(event.target);
-    // console.log(formData,"formData upload onImageChange fn side");
-    let files = event.target.name.files;
-    console.log(files, "selectedImages onimagechange fn side");
+const sliderOnChange = (e)=>{
+console.log(e.target,"e target value slider")
+console.log(e.target.value,"e target value slider")
 
-    if (event.target.name.files && event.target.name.files[0]) {
+}
 
-      for (let i = 0; i < files.length; i++) {
-        console.log(files[i].name, "files loop side ");
-        imagesURL.push({localImageUrl:URL.createObjectURL(files[i])});
-        console.log(URL.createObjectURL(files[i]),"file url created")
+ const handleDeleteImage = (e)=>{
+  console.log(e.target,"e target value handleDeleteImage")
+  console.log(e.target.value,"e target value handleDeleteImage")
+  const li = e.target
+  const id = e.target.name
+  const liParent = li.parentElement;
+  liParent.removeChild(li)
 
-        // setLocalUploadImages(imagesURL)
-        // setGetImageData(imagesURL)
+
+//   let  index = getImageData.indexOf(id);
+//   if (index !== -1) {
+//   getImageData.splice(index, 1);
+// }
+  console.log(liParent,"li parent ")
+
+ }
+
+  // const onImageChange = async (event) => {
+  //   event.preventDefault();
+  //   let imagesURL=[];
+  //   console.log(event.target.name, "e target name upload image side");
+  //   console.log(event.target.name.files, "e target files upload image side");
+  //   // let formData = new FormData(event.target);
+  //   // console.log(formData,"formData upload onImageChange fn side");
+  //   let files = event.target.name.files;
+  //   console.log(files, "selectedImages onimagechange fn side");
+
+  //   if (event.target.name.files && event.target.name.files[0]) {
+
+  //     for (let i = 0; i < files.length; i++) {
+  //       console.log(files[i].name, "files loop side ");
+  //       imagesURL.push({localImageUrl:URL.createObjectURL(files[i])});
+  //       console.log(URL.createObjectURL(files[i]),"file url created")
+
+  //       // setLocalUploadImages(imagesURL)
+  //       // setGetImageData(imagesURL)
         
-      }
-     console.log(imagesURL,"imagess array under fn blank down side")
+  //     }
+  //    console.log(imagesURL,"imagess array under fn blank down side")
 
-    }
-  };
+  //   }
+  // };
 
 
   return (
@@ -77,7 +100,7 @@ export const GenerateNFT = (props) => {
       {/* {console.log(layerData, "layerData genrate nft collection side ")} */}
       {/* {console.log(selectedLayerName,"selectedLayerNAme generatenft side")} */}
       <UploadImage
-        onImageChange={onImageChange}
+        // onImageChange={onImageChange}
         setUploadData={setUploadData}
         getImages={getImages}
         setShow={setShow}
@@ -95,14 +118,19 @@ export const GenerateNFT = (props) => {
                   {getImageData.map((layerImg, i) => (
                   <>
                     {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
-                    <li key={"i"}>
+                    <li key={i} name = {layerImg._id}>
+
                       <div className={style.hidenft}>
                         <span className={style.layerImages}>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                           <img
                             src={`${API_BASE_URL}${layerImg.imageUrl}`}
                             // src={localUploadImages}
                             alt="plus"
+                            
                           />
+                    
+
                         </span>
                       </div>
                     </li>
@@ -187,7 +215,7 @@ export const GenerateNFT = (props) => {
                       {/* rarity setting start here */}
 
                       {getImageData.length !== 0 ? (
-                        <Rarity getImageData={getImageData} />
+                        <Rarity sliderOnChange= {sliderOnChange} getImageData={getImageData} />
                       ) : (
                         ""
                       )}

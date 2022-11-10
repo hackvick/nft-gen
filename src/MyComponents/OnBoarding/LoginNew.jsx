@@ -41,6 +41,7 @@ export const LoginNew = (props) => {
           localStorage.setItem("token", res.data.data.accessToken);
           // navigate("/");
           // onClose();
+          setOpen(false)
         })
         .catch((err) => {
           console.log(err);
