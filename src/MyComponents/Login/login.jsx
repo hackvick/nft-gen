@@ -32,71 +32,71 @@
 //           console.log(res);
 //           toast.success("Login Successfully");
           
-//           console.log("login successfully")
-//           // navigate("/getStarted")
-//           localStorage.setItem('token', res.data.data.accessToken);
-//           // navigate("/");
-//           onClose()
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//           if (err.response.data.message === 'USER_NOT_FOUND') {
-//             toast.error('User not found');
-//           }
-//           else {
-//             toast.error('Invalid Passowrd');
-//           }
-//         })
-//     },
-//   });
-//   const forgetPassword = () => {
-//     setForget(true);
-//   };
-//   const toggleContent = () => {
-//     setOpen(true);
-//   };
-//   return (
-//     <div >
-//       <div className={`container ${style.loginContainer}`}>
-//         <ToastContainer />
-//         <Modal className="loginModal" show={show} onHide={onClose}>
-//           <Modal.Body className={style.modalBody}>
-//             <div className="row m-0 p-0">
-//               {!open ? (
-//                 <div className={`col-md-6 p-2`}>
-//                   {forget ?
-//                     (
-//                       <div className={style.content}>
-//                         <div className={style.logoContainer}>
-//                           {/* <img alt="logo" src={Logo} className={style.logo} width="30px" height="30px" /> <p className={style.logoText}>NFT Generator</p> */}
-//                         </div>
-//                         <div className={style.leftHeading}>
-//                           <h3>Forget Password</h3>
-//                           <p>Please enter your registered email address and we’ll send you a verification code to reset your password</p>
-//                         </div>
-//                         <div className={style.FormContainer}>
-//                           {!verify ?
-//                             <ForgetPassword verify={verify} setVerify={setVerify} />
-//                             : <VerifyForm />}
-//                         </div>
-//                         <div className={`row ${style.bottomRow}`}>
-//                           {!open &&
-//                             <>
-//                               {!verify ?
-//                                 <>
-//                                   <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
-//                                   <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Create an Account</div>
-//                                 </>
-//                                 :
-//                                 <>
-//                                   <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
-//                                   <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Resend Code</div>
-//                                 </>
-//                               }
-//                             </>
-//                           }
-//                         </div>
-//                       </div>
+  //         console.log("login successfully")
+  //         // navigate("/getStarted")
+  //         localStorage.setItem('token', res.data.data.accessToken);
+  //         // navigate("/");
+  //         onClose()
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         if (err.response.data.message === 'USER_NOT_FOUND') {
+  //           toast.error('User not found');
+  //         }
+  //         else {
+  //           toast.error('Invalid Passowrd');
+  //         }
+  //       })
+  //   },
+  // });
+  // const forgetPassword = () => {
+  //   setForget(true);
+  // };
+  // const toggleContent = () => {
+  //   setOpen(true);
+  // };
+  // return (
+  //   <div >
+  //     <div className={`container ${style.loginContainer}`}>
+  //       <ToastContainer />
+  //       <Modal className="loginModal" show={show} onHide={onClose}>
+  //         <Modal.Body className={style.modalBody}>
+  //           <div className="row m-0 p-0">
+  //             {!open ? (
+  //               <div className={`col-md-6 p-2`}>
+  //                 {forget ?
+  //                   (
+  //                     <div className={style.content}>
+  //                       <div className={style.logoContainer}>
+  //                         {/* <img alt="logo" src={Logo} className={style.logo} width="30px" height="30px" /> <p className={style.logoText}>NFT Generator</p> */}
+  //                       </div>
+  //                       <div className={style.leftHeading}>
+  //                         <h3>Forget Password</h3>
+  //                         <p>Please enter your registered email address and we’ll send you a verification code to reset your password</p>
+  //                       </div>
+  //                       <div className={style.FormContainer}>
+  //                         {!verify ?
+  //                           <ForgetPassword verify={verify} setVerify={setVerify} />
+  //                           : <VerifyForm />}
+  //                       </div>
+  //                       <div className={`row ${style.bottomRow}`}>
+  //                         {!open &&
+  //                           <>
+  //                             {!verify ?
+  //                               <>
+  //                                 <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
+  //                                 <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Create an Account</div>
+  //                               </>
+  //                               :
+  //                               <>
+  //                                 <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
+  //                                 <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Resend Code</div>
+  //                               </>
+  //                             }
+  //                           </>
+  //                         }
+  //                       </div>
+  //                     </div>
 
 //                     )
 //                     : (

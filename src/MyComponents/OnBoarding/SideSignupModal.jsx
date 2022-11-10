@@ -1,10 +1,10 @@
-import { useState } from 'react'
+
 import { useOnboard } from '../../context/GlobalContext';
 import style from "../Login/Login.module.css"
-import SignupNew from '../Signup2.0/SignupNew';
+import SignupNew from './SignupNew';
 export const SideSignupModal = (props) => {
 
-    const {forget,setForget,sign,setSign} = useOnboard()
+    const {setForget,sign,setSign} = useOnboard()
 
     // const { setForget } = props;
     

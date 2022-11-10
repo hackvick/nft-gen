@@ -26,6 +26,7 @@ export const GetStarted = () => {
   // const [toggle, setToggle] = useState("1");
   // const [open, setOpen] = useState(false)
   // const navigate = useNavigate();
+
   const [layerData, setLayerData] = useState([]);
   const [projectName,setProjectName] = useState("")
   const [selectedLayerName,setSelectedLayerName] = useState("") 
@@ -40,6 +41,7 @@ export const GetStarted = () => {
       })
       .then((res) => {
         setLayerData(res.data.data.layers, "Get layer data get layer fn side");
+        console.log(res.data.data.layers, "Get layer data get layer fn side>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         setSelectedLayerName(layername)
         
       })

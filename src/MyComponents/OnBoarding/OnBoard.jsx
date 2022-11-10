@@ -3,8 +3,8 @@ import style from "../Login/Login.module.css";
 
 import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
-import SignupNew from "../Signup2.0/SignupNew";
-import { LoginNew } from "../login2.0/LoginNew";
+import SignupNew from "./SignupNew";
+import { LoginNew } from "./LoginNew";
 import ForgetHandle from "./ForgetHandle";
 import { useOnboard } from "../../context/GlobalContext";
 // import { useOnboard } from "../../context/GlobalContext";

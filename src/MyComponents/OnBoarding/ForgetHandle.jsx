@@ -42,13 +42,13 @@ const ForgetHandle = (props) => {
                         <>
                             {!verify ?
                                 <>
-                                    <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
-                                    <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={createAccount}>Create an Account</div>
+                                    <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} style={{cursor:'pointer'}} onClick={() => setForget(false)} >Login</div>
+                                    <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} style={{cursor:'pointer'}} onClick={createAccount}>Create an Account</div>
                                 </>
                                 :
                                 <>
-                                    <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} onClick={() => setForget(false)} >Login</div>
-                                    <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} onClick={toggleContent}>Resend Code</div>
+                                    <div className={`col-md-6 col-sm-6 ${style.bottomLogin}`} style={{cursor:'pointer'}} onClick={() => setForget(false)} >Login</div>
+                                    <div className={`col-md-6 col-sm-6 ${style.CreateAccount}`} style={{cursor:'pointer'}}onClick={toggleContent}>Resend Code</div>
                                 </>
                             }
                         </>
