@@ -62,7 +62,7 @@
 .nftColBottom{
     display: flex;
     width: 72% !important;
-    /* overflow: scroll; */
+    overflow-y: hidden;
     /* background-color: #efefef; */
 }
 .nft_center{
