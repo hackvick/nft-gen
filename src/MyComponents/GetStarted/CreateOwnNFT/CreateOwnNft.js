@@ -15,7 +15,7 @@ export const CreateOwnNft = (props) => {
   return (
     <>
       {/* {console.log(style.active,"style active create own nft side")} */}
-      <div className={`${style.bottomBar} col-2`}>
+      <div className={`${style.bottomBar} col-12 col-xxl-2`}>
         <div className={style.bottomBar_content}>
           <div className={style.inputContainer}>
             <img src={search} alt="search" className="mx-3" />
@@ -29,14 +29,14 @@ export const CreateOwnNft = (props) => {
           <h6 className={style.heading}>Collections</h6>
           <div className={style.bottomRow}>
             <ul className={`${style.leftSection} `}>
-              <div onClick={() => setStartProject(true)}>
-                <li>
+              <li>
+                <div onClick={() => setStartProject(true)} className={style.customLayer_outer}>
                   <span className={style.customLayer}>
                     <img src={plus} className="" alt="design" />
                     <span className={style.addPhoto}>Create your Own NFT</span>
                   </span>
-                </li>
-              </div>
+                </div>
+              </li>
               {collectionData?.map((content, index) => {
                 return (
                   <li

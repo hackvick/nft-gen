@@ -10,7 +10,7 @@ import GroupImg from "../../../assets/Group.png";
     <div className={style.background}>
       <div className="container w-100">
         <div className={`row m-0  ${style.headingSection}`}>
-          <div className="col-md-6 col-sm-6 col-xs-6 pt-5 ">
+          <div className="col-md-6 col-sm-6 col-xs-6 pt-0 pt-sm-5 ">
             <span className={style.heading}>
               A New Way to Create your{" "}
               <span className={style.title}> Artworks.</span>
