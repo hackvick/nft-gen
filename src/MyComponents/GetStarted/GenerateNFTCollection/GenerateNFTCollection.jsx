@@ -12,7 +12,7 @@ import { useNftProvider } from "../../context/NftProvider";
 import { API_BASE_URL } from "../../../Api/Api";
 // import { toast } from "react-toastify";
 // import axios from "axios";
-// import cross from "../../../assets/cross.png";
+import cross from "../../../assets/cross.png";
 
 export const GenerateNFT = (props) => {
   const {
@@ -40,29 +40,23 @@ export const GenerateNFT = (props) => {
   }, [layerId]);
 
   const handleShow = () => setToggle(true);
-  
-const sliderOnChange = (e)=>{
-console.log(e.target,"e target value slider")
-console.log(e.target.value,"e target value slider")
 
-}
+  const sliderOnChange = (e) => {
+    console.log(e.target, "e target value slider");
+    console.log(e.target.value, "e target value slider");
+  };
 
- const handleDeleteImage = (e)=>{
-  console.log(e.target,"e target value handleDeleteImage")
-  console.log(e.target.value,"e target value handleDeleteImage")
-  const li = e.target
-  const id = e.target.name
-  const liParent = li.parentElement;
-  liParent.removeChild(li)
-
-
-//   let  index = getImageData.indexOf(id);
-//   if (index !== -1) {
-//   getImageData.splice(index, 1);
-// }
-  console.log(liParent,"li parent ")
-
- }
+  const handleDeleteImage = (e) => {
+    console.log(e.target, "e target value handleDeleteImage");
+    console.log(e.target.name, "e target name handleDeleteImage");
+    const li = e.target;
+    const id = e.target.id;
+    console.log(id, "id  ");
+    const newList = getImageData.filter((item) => item._id !== id);
+    console.log(newList, "newList");
+    setGetImageData((prev) => [...prev, newList]);
+    console.log(newList, "newList after remove");
+  };
 
   // const onImageChange = async (event) => {
   //   event.preventDefault();
@@ -83,13 +77,12 @@ console.log(e.target.value,"e target value slider")
 
   //       // setLocalUploadImages(imagesURL)
   //       // setGetImageData(imagesURL)
-        
+
   //     }
   //    console.log(imagesURL,"imagess array under fn blank down side")
 
   //   }
   // };
-
 
   return (
     <div className={style.nftGenerate}>
@@ -116,25 +109,23 @@ console.log(e.target.value,"e target value slider")
               <div className={style.nft_center}>
                 <ul className={style.categoryList}>
                   {getImageData.map((layerImg, i) => (
-                  <>
-                    {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
-                    <li key={i} name = {layerImg._id}>
+                    <>
+                      {/* {console.log(layerImg.imageUrl, "layerimagedata")} */}
+                      <li key={i} name={layerImg._id}>
+                        <div className={style.hidenft}>
+                        <img className="crossImg" id={layerImg._id} src={cross} alt="" />
 
-                      <div className={style.hidenft}>
-                        <span className={style.layerImages}>
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                          <img
-                            src={`${API_BASE_URL}${layerImg.imageUrl}`}
-                            // src={localUploadImages}
-                            alt="plus"
+                          <span className={style.layerImages}>
                             
-                          />
-                    
-
-                        </span>
-                      </div>
-                    </li>
-                  </>
+                            <img
+                              src={`${API_BASE_URL}${layerImg.imageUrl}`}
+                              // src={localUploadImages}
+                              alt="plus"
+                            />
+                          </span>
+                        </div>
+                      </li>
+                    </>
                   ))}
                   <li>
                     {/* upload Image div starts here that trigger upload modal */}
@@ -162,8 +153,7 @@ console.log(e.target.value,"e target value slider")
                     {/* upload Image div ends here that trigger upload modal */}
                   </li>
                 </ul>
-                
-              </div>        
+              </div>
               <div className={style.LayerSettingBottom}>
                 <div className={style.layerSetting}>
                   <div className={style.saveDraft}>
@@ -215,7 +205,10 @@ console.log(e.target.value,"e target value slider")
                       {/* rarity setting start here */}
 
                       {getImageData.length !== 0 ? (
-                        <Rarity sliderOnChange= {sliderOnChange} getImageData={getImageData} />
+                        <Rarity
+                          sliderOnChange={sliderOnChange}
+                          getImageData={getImageData}
+                        />
                       ) : (
                         ""
                       )}

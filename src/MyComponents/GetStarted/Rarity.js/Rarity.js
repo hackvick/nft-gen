@@ -11,24 +11,20 @@ export const Rarity = (props) => {
 
   useMemo(() => {
     getImageData.map((data, index) => {
-      console.log(index, "index divide rarity");
+      // console.log(index, "index divide rarity");
       setStartValueSlider((prev) => ({
         ...prev,
         value: index + 1,
       }));
     });
-  },[getImageData,setStartValueSlider]);
+  }, [getImageData, setStartValueSlider]);
 
-  console.log(startValueSlider, "start Value Slider");
-  const divideValue = 100 /startValueSlider.value
-  console.log(divideValue,"divide value first ")
+  // console.log(startValueSlider, "start Value Slider");
+  const divideValue = 100 / startValueSlider.value;
+  // console.log(divideValue, "divide value first ");
   const [val, setVal] = useState(25);
 
-
-  // const [defaultVal,setDefaultVal] = useState(100/getImageData.length)
- console.log(val,"val start value state side sliderrr")
-
- console.log(100 /startValueSlider.value,"divide value sliderrr")
+  // console.log(val, "val start value state side sliderrr");
 
   const updateVal = (e) => {
     console.log(e.target.value, "e target val");
@@ -40,7 +36,7 @@ export const Rarity = (props) => {
   return (
     <>
       <div className={style.rarity_options}>
-        {console.log(val,"val rarity side")}
+        {/* {console.log(val, "val rarity side")} */}
         {getImageData.map((layerImg, i) => (
           <>
             {/* {console.log(getImageData.length,"index value getimagedata")} */}
@@ -61,7 +57,7 @@ export const Rarity = (props) => {
                   aria-label="Small"
                   className="mx-3"
                   onChange={(e) => {
-                    updateVal(e);
+                    // updateVal(e);
                   }}
                   value={divideValue}
                   // onValueChange = {val}

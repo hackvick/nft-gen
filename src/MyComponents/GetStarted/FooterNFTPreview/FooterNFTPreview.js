@@ -12,8 +12,8 @@ export const FooterNFTPreview = (props) => {
   const { layerId, setLayerId } = useNftProvider();
   const [layer, setLayer] = useState(false);
 
-  console.log(layerData, "layerData footer nft side ");
-  console.log(getImageData, "getImageData footer nft side ");
+  // console.log(layerData, "layerData footer nft side ");
+  // console.log(getImageData, "getImageData footer nft side ");
 
   return (
     <>
@@ -70,10 +70,10 @@ export const FooterNFTPreview = (props) => {
                             {getImageData.map((layerimg) => (
                               <></>
                             ))}
-                            {console.log(
+                            {/* {console.log(
                               getImageData,
                               "get img data footer side"
-                            )}
+                            )} */}
                             <div className={style2.rectangle}>
                               <div className={style2.shape}>
                                 <img src={cross} alt="" />

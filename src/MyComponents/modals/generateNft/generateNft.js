@@ -93,14 +93,14 @@ export const NftGenerator = (props) => {
   return (
     <>
       <div>
-        {console.log(
+        {/* {console.log(
           generatedNftUrl,
           "generatedNft Url generate nft modal side "
         )}
         {console.log(data, "data that pass in api gen nft side")}
 
         {console.log(collectionId, "collection id generate nft modal side")}
-        {console.log(numberOfEditions, "numberOfEditions nft modal side")}
+        {console.log(numberOfEditions, "numberOfEditions nft modal side")} */}
 
         <Modal show={toggle} onHide={handleClose} className="nftGenerateModal">
           <Modal.Header closeButton className={style.generateHeader}>
