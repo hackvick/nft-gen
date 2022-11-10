@@ -118,7 +118,6 @@ export const GenerateNFT = (props) => {
                           <span className={style.layerImages}>
                             
                             <img
-                              className="layerImg"
                               src={`${API_BASE_URL}${layerImg.imageUrl}`}
                               // src={localUploadImages}
                               alt="plus"
