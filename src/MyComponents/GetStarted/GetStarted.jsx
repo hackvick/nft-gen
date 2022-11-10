@@ -80,8 +80,8 @@ export const GetStarted = () => {
     getLayer(collection_Id);
     setImagePreview(imagePreview)
     //get images bhi aygi ispr click krty hi
-    // setLayerId("")
-      setLayerId(layerIdFromCollections)
+    setLayerId("")
+      // setLayerId(layerIdFromCollections)
       // getImages()
 
   };
