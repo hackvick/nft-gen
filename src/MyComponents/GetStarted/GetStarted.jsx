@@ -30,7 +30,7 @@ export const GetStarted = () => {
   const [projectName,setProjectName] = useState("")
   const [selectedLayerName,setSelectedLayerName] = useState("") 
   const [getImageData, setGetImageData] = useState([]);
-
+  const [imagePreview,setImagePreview] = useState("") 
   const getLayer = (collection_Id,layername) => {
     console.log(collection_Id, "get layer function side");
     // setLoader(true)
@@ -71,10 +71,11 @@ export const GetStarted = () => {
       });
   };
 
-  const handleCollectionHandler = (collection_Id) => {
+  const handleCollectionHandler = (collection_Id,imagePreview) => {
     console.log(collection_Id,"collectionid handle collection create own nft")
     setCollectionId(collection_Id);
     getLayer(collection_Id);
+    setImagePreview(imagePreview)
     // getImages()
     //get images bhi aygi ispr click krty hi
     setLayerId("")
@@ -125,7 +126,7 @@ useMemo(() => {
 
           <div className={`col-9 ${style.rightBar}`}>
             <GenerateNFT getImages = {getImages} getImageData = {getImageData} setGetImageData = {setGetImageData} selectedLayerName = {selectedLayerName} setLayerData={setLayerData} layerData = {layerData}/>
-            <FooterNFTPreview getImageData = {getImageData} setSelectedLayerName = {setSelectedLayerName} layerData={layerData} getLayer={getLayer} />
+            <FooterNFTPreview imagePreview = {imagePreview} getImageData = {getImageData} setSelectedLayerName = {setSelectedLayerName} layerData={layerData} getLayer={getLayer} />
           </div>
         </div>
       </section>

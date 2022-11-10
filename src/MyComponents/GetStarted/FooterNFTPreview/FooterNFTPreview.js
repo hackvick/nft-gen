@@ -8,8 +8,8 @@ import { useNftProvider } from "../../context/NftProvider";
 import { API_BASE_URL } from "../../../Api/Api";
 
 export const FooterNFTPreview = (props) => {
-  const { layerData, getLayer, setSelectedLayerName, getImageData } = props;
-  const { layerId, setLayerId } = useNftProvider();
+  const { layerData, getLayer, setSelectedLayerName, getImageData,imagePreview } = props;
+  const { layerId, setLayerId,collectionData } = useNftProvider();
   const [layer, setLayer] = useState(false);
 
   // console.log(layerData, "layerData footer nft side ");
@@ -30,30 +30,14 @@ export const FooterNFTPreview = (props) => {
                       <div className={style2.parent}>
                         <div className={style2.rectangle1}>
                           <div className={style2.bitmap3}>
-                            <img src={backgroundImage} alt="" />
+                          {collectionData.preview!== null? 
+                            <img src={`${API_BASE_URL}/${imagePreview}`} alt="" />:""}
                           </div>
                         </div>
                         <div className={style2.preview}>
                           <p>Preview</p>
                         </div>
                       </div>
-
-                      {/* <div className={style2.baby}>
-                        <div className={style2.shape}>
-                          <img src="red_close.png" alt="" />
-                        </div>
-                        <div className={style2.rectangle}>
-                          <div className={style2.bitmap1}>
-                            <img src={backgroundImage} alt="" />
-                          </div>
-                        </div>
-                        <div
-                          className={style2.preview}
-                          style2={{ marginRight: "18px" }}
-                        >
-                          <p>Background</p>
-                        </div>
-                      </div> */}
 
                       {layerData.map((layerData) => (
                         <>

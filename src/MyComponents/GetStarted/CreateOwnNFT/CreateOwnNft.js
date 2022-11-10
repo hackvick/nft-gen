@@ -42,7 +42,7 @@ export const CreateOwnNft = (props) => {
                   <li
                     key={index}
                     // className={content._id === collectionId ? style.active : ''}
-                    onClick={() => handleCollectionHandler(content._id)}
+                    onClick={() => handleCollectionHandler(content._id,content.preview)}
                   >
                     {content._id === collectionId ? (
                       <>
