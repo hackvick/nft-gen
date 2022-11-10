@@ -92,6 +92,7 @@ ul{
     background: #fff;
     height: 100%;
     width: 100%;
+    position: relative;
 }
 .nftCursor{
     background: transparent;
@@ -465,7 +466,17 @@ span.uploadImage{
 .active{
     border: 5px solid blue;
 }
+.hidenft>img{
+    display: none;
+    width: 40px;
+    position: absolute;
+    left: 9%;
+    top: -9px;
+}
 
+.hidenft:hover>img{
+    display: block;
+}
 
 
 
