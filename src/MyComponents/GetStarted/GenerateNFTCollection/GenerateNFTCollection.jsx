@@ -102,7 +102,7 @@ export const GenerateNFT = (props) => {
       <NftGenerator toggle={toggle} setToggle={setToggle} />
       <EditData show={edit} setShow={setEdit} />
 
-      <div className="container p-0 h-100">
+      <div className=" p-0 h-100">
         <div className="row p-0 m-0 gx-0">
           <div className={style.bottom}>
             <div className={style.displaySetting}>

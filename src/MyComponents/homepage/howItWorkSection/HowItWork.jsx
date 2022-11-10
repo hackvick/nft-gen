@@ -8,7 +8,7 @@ const HowItWork = () => {
       <h1>How it Work</h1>
       <div className="row m-0  my-5">
         {HOW_IT_WORK.map((item) => (
-          <div key={item.id} className={`${style.leftContent}`}>
+          <div key={item.id} className={` ${style.leftContent}`}>
             <div className={style.uppercontent}>
               <img
                 alt="HowitWorkImage"

@@ -128,7 +128,7 @@ useMemo(() => {
             collectionId={collectionId}
           />
 
-          <div className={`col-9 ${style.rightBar}`}>
+          <div className={`col-12 col-xxl-9 ${style.rightBar}`}>
             <GenerateNFT getImages = {getImages} getImageData = {getImageData} setGetImageData = {setGetImageData} selectedLayerName = {selectedLayerName} setLayerData={setLayerData} layerData = {layerData}/>
             <FooterNFTPreview imagePreview = {imagePreview} getImageData = {getImageData} setSelectedLayerName = {setSelectedLayerName} layerData={layerData} getLayer={getLayer} />
           </div>

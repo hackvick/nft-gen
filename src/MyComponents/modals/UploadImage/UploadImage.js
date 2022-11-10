@@ -59,7 +59,7 @@ const UploadImage = ({ show, setShow, getImages, setUploadData,onImageChange }) 
             }}
           >
             <Modal.Body className={style.uploadBody}>
-              <input  type="file" name="name" multiple="multiple" />
+              <input  type="file" name="name" multiple="multiple" required/>
             </Modal.Body>
             <Modal.Footer className={style.uploadFooter}>
               <Button

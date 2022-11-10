@@ -26,7 +26,7 @@ const PopularCollection = () => {
 
       <div className="row">
         {POPULAR_COLLECTION.map((item) => (
-          <div key={item.id} className={`col-md-6 col-sm-12  ${style.Content}`}>
+          <div key={item.id} className={`col-md-6   col-sm-12  ${style.Content}`}>
               <img alt="popularImage" className={style.popularCollectionImage}  src={item.image} />
               <div className={style.likeContainer}>
                 <AiFillHeart />

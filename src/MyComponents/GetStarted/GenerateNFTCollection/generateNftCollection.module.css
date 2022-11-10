@@ -9,12 +9,14 @@
     padding-left: 0 !important;
 }
 .arrowImage{
-    margin-right: 18px;
+    margin-right: 15px;
     padding-top: 3px;
     height: 26px;
 }
 .saveDraft{
     border: none;
+    display: flex;
+    align-items: center;
 }
 .bottomRight{
     color: gray !important;
@@ -39,14 +41,16 @@
     color: #fff;
     border-radius: 5px;
     border: none;
-    font-size: 16px;
+    font-weight: 400;
+    padding: 7px 10px;
+    font-size: 14px;
     background: #2F66EE;
     text-decoration: none;
     transition: all 0.1s;
 }
 .displaySetting{
     display: flex;
-    height: calc(100vh - 82px);
+    height: calc(100vh - 196px);
     width: 100%;
 }
 
@@ -58,13 +62,13 @@
 .nftColBottom{
     display: flex;
     width: 72% !important;
-    overflow: scroll;
+    /* overflow: scroll; */
     /* background-color: #efefef; */
 }
 .nft_center{
     background-color: #fafafa;
     width: 72%;
-    height: calc(100% - 115px);
+    height: 100%;
     background: #F9F9F9;
     padding: 20px 0 20px 20px;
     grid-template-columns: repeat(auto-fit,minmax(100px, 1fr));
@@ -83,8 +87,8 @@ ul{
 .categoryList li{
     float: left;
     list-style: none;
-    width: 185px;
-    margin: 2% 28px;
+    width: 25%;
+    margin: 10px 28px;
     height: 130px;
     text-align: center;
 }
@@ -127,11 +131,11 @@ span.uploadImage{
 .LayerSettingBottom{
     right: 0px;
     width: 28%;
-    height: calc(100% - 115px);
+    height: 100%;
     background: #efefef;
     display: block;
     border: 1px solid #dddddd;
-    padding: 14px 19px 0px 19px;
+    padding: 14px 18px 0px 18px;
 }
 .setting{
     position: relative;
@@ -184,9 +188,7 @@ span.uploadImage{
 }
 .nftFooter{
     margin: 0px;
-    position: absolute;
     width: 100%;
-    bottom: 0px;
 }
 .previewImages{
     display: flex;
@@ -227,8 +229,7 @@ span.uploadImage{
     padding: 5px;
     position: relative;
 } */
-.nftColBottom{
-}
+
 .nftFooter ul li button span{
     font-size: 12px;
     color: #707070;
@@ -306,7 +307,7 @@ span.uploadImage{
 
 .image {
     box-sizing: border-box;
-    height: 115px;
+    height: 114px;
     border: 1px solid #CFCFCF;
   }
   .parent {

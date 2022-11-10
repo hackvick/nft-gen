@@ -20,7 +20,7 @@ export const FooterNFTPreview = (props) => {
       {/* {console.log(currentLayerImg,"currentLayerimg")} */}
       <AddLayer getLayer={getLayer} show={layer} setShow={setLayer} />
       <div className={style2.nftGenerate}>
-        <div className="container p-0 h-100">
+        <div className="p-0 h-100">
           <div className={style2.nftFooter}>
             <div className={style2.image}>
               <div className={style2.outterDiv}>
@@ -80,6 +80,7 @@ export const FooterNFTPreview = (props) => {
                         </>
                       ))}
                     </div>
+                    
                   </div>
                   <div className={`col-4 ${style2.add_layer}`}>
                     <div className={style2.layerBaby}>
